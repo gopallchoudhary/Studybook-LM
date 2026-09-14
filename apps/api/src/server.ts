@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
 
 app.get("/health", (req, res) => {
 	return res.json({
-		message: "Synapse LLM server is up and running v1",
+		message: "Synapse LLM server is up and running v1.1",
 		healthy: true,
 	});
 });
