@@ -18,7 +18,7 @@ export function useArtifacts(workspaceId: string) {
 				(artifact) =>
 					artifact.status === "PENDING" || artifact.status === "PROCESSING",
 			);
-			return hasPending ? 4000 : false;
+			return hasPending ? 2000 : false;
 		},
 	});
 }

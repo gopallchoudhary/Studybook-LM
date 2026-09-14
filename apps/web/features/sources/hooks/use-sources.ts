@@ -11,6 +11,17 @@ export function useSources(workspaceId: string) {
 	return useQuery({
 		...trpc.source.list.queryOptions({ workspaceId }),
 		enabled: Boolean(workspaceId),
+		refetchInterval: (query) => {
+			const data = query.state.data as
+				| { status: string }[]
+				| undefined;
+			if (!data) return false;
+			const hasPending = data.some(
+				(source) =>
+					source.status === "PENDING" || source.status === "PROCESSING",
+			);
+			return hasPending ? 3000 : false;
+		},
 	});
 }
 
