@@ -149,8 +149,8 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
     return (
       <main className="grid min-h-svh place-items-center bg-background p-6 text-center">
         <div>
-          <h1 className="text-2xl font-semibold">Notebook not found</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <h1 className="type-heading-2">Notebook not found</h1>
+          <p className="mt-2 type-caption text-muted-foreground">
             {workspaceQuery.error?.message || "This notebook may have been deleted."}
           </p>
           <Button className="mt-6" onClick={() => router.push("/dashboard")}>
@@ -202,10 +202,10 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
               {workspace.icon || "S"}
             </span>
             <div className="min-w-0">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="type-eyebrow uppercase text-muted-foreground">
                 Notebook
               </p>
-              <h1 className="truncate text-base font-semibold sm:text-lg">{workspace.title}</h1>
+              <h1 className="truncate type-title">{workspace.title}</h1>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -227,7 +227,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                   </DialogDescription>
                 </DialogHeader>
                 <form className="grid gap-4" onSubmit={submitSettings}>
-                  <label className="grid gap-2 text-sm font-medium">
+                  <label className="grid gap-2 type-body-sm font-medium">
                     Title
                     <Input
                       required
@@ -238,7 +238,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                       }
                     />
                   </label>
-                  <label className="grid gap-2 text-sm font-medium">
+                  <label className="grid gap-2 type-body-sm font-medium">
                     Description
                     <Textarea
                       maxLength={500}
@@ -252,7 +252,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                     />
                   </label>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <label className="grid gap-2 text-sm font-medium">
+                    <label className="grid gap-2 type-body-sm font-medium">
                       Icon
                       <Input
                         maxLength={8}
@@ -262,10 +262,10 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                         }
                       />
                     </label>
-                    <label className="grid gap-2 text-sm font-medium">
+                    <label className="grid gap-2 type-body-sm font-medium">
                       Default model
                       <select
-                        className="h-8 w-full rounded-lg border border-input bg-background px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                        className="h-8 w-full rounded-lg border border-input bg-background px-2.5 type-body-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
                         value={form.defaultModel}
                         onChange={(event) =>
                           setForm((current) => ({
@@ -280,7 +280,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                     </label>
                   </div>
                   {updateWorkspace.error && (
-                    <p className="text-sm text-destructive" role="alert">
+                    <p className="type-caption text-destructive" role="alert">
                       {updateWorkspace.error.message}
                     </p>
                   )}

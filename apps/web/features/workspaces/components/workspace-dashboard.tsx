@@ -100,7 +100,7 @@ function CreateWorkspaceDialog() {
           </DialogDescription>
         </DialogHeader>
         <form className="grid gap-4" onSubmit={submit}>
-          <label className="grid gap-2 text-sm font-medium">
+          <label className="grid gap-2 type-body-sm font-medium">
             Title
             <Input
               autoFocus
@@ -113,7 +113,7 @@ function CreateWorkspaceDialog() {
               }
             />
           </label>
-          <label className="grid gap-2 text-sm font-medium">
+          <label className="grid gap-2 type-body-sm font-medium">
             Description
             <Textarea
               maxLength={500}
@@ -127,7 +127,7 @@ function CreateWorkspaceDialog() {
               }
             />
           </label>
-          <div className="grid gap-2 text-sm font-medium">
+          <div className="grid gap-2 type-body-sm font-medium">
             Icon
             <div
               aria-label="Choose a notebook icon"
@@ -155,7 +155,7 @@ function CreateWorkspaceDialog() {
             </div>
           </div>
           {createWorkspace.error && (
-            <p className="text-sm text-destructive" role="alert">
+            <p className="type-caption text-destructive" role="alert">
               {createWorkspace.error.message}
             </p>
           )}
@@ -187,12 +187,12 @@ export function WorkspaceDashboard() {
     <main className="min-h-svh bg-background text-foreground">
       <header className="border-b border-border/70 bg-background/90 backdrop-blur">
         <div className="mx-auto flex min-h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-3 font-semibold tracking-tight">
-            <BrandLogo className="size-12 rounded-xl" size={32} />
+          <Link href="/" className="flex items-center gap-3 type-title">
+            <BrandLogo className="size-8 rounded-lg" size={32} />
             <span className="hidden sm:inline">Studybook LM</span>
           </Link>
           <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-muted-foreground md:inline">
+            <span className="hidden type-caption text-muted-foreground md:inline">
               {user?.firstName ? `Welcome back, ${user.firstName}` : "Your learning desk"}
             </span>
             <UserButton />
@@ -205,14 +205,14 @@ export function WorkspaceDashboard() {
           <div className="absolute -right-24 -top-32 size-80 rounded-full bg-sky-400/10 blur-3xl" />
           <div className="relative flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-sky-600 dark:text-sky-300">
+              <p className="flex items-center gap-2 type-eyebrow uppercase text-sky-600 dark:text-sky-300">
                 <LibraryBig className="size-4" />
                 Research, remembered
               </p>
-              <h1 className="mt-4 max-w-xl text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
+              <h1 className="mt-4 max-w-xl type-heading-1">
                 What are you learning today?
               </h1>
-              <p className="mt-4 max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
+              <p className="mt-4 max-w-lg type-body-md text-muted-foreground">
                 Keep your sources together and turn them into understanding,
                 one notebook at a time.
               </p>
@@ -224,10 +224,10 @@ export function WorkspaceDashboard() {
         <section className="mt-10">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="type-eyebrow uppercase text-muted-foreground">
                 Your library
               </p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight">Notebooks</h2>
+              <h2 className="mt-2 type-heading-2">Notebooks</h2>
             </div>
             <label className="relative block w-full sm:max-w-xs">
               <span className="sr-only">Search notebooks</span>
@@ -251,16 +251,16 @@ export function WorkspaceDashboard() {
               ))}
             </div>
           ) : workspacesQuery.error ? (
-            <div className="mt-6 rounded-2xl border border-destructive/30 bg-destructive/5 p-6 text-sm text-destructive">
+            <div className="mt-6 rounded-2xl border border-destructive/30 bg-destructive/5 p-6 type-caption text-destructive">
               Unable to load notebooks: {workspacesQuery.error.message}
             </div>
           ) : filteredWorkspaces.length === 0 ? (
             <div className="mt-6 rounded-2xl border border-dashed border-border p-10 text-center sm:p-16">
               <BookOpen className="mx-auto size-8 text-muted-foreground" />
-              <h3 className="mt-4 text-lg font-semibold">
+              <h3 className="mt-4 type-heading-3">
                 {search ? "No notebooks match your search" : "Start your first notebook"}
               </h3>
-              <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
+              <p className="mx-auto mt-2 max-w-sm type-body-sm text-muted-foreground">
                 {search
                   ? "Try a different title or description."
                   : "Create a focused space for the sources and questions you want to explore."}
@@ -282,14 +282,14 @@ export function WorkspaceDashboard() {
                     <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </div>
                   <div className="mt-9">
-                    <h3 className="truncate text-xl font-semibold tracking-tight">
+                    <h3 className="truncate type-title">
                       {workspace.title}
                     </h3>
-                    <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-5 text-muted-foreground">
+                    <p className="mt-2 line-clamp-2 min-h-10 type-caption text-muted-foreground">
                       {workspace.description || "A new space for your next line of inquiry."}
                     </p>
                   </div>
-                  <div className="mt-5 flex items-center gap-2 text-xs text-muted-foreground">
+                  <div className="mt-5 flex items-center gap-2 type-caption text-muted-foreground">
                     <Clock3 className="size-3.5" />
                     Updated {formatDate(workspace.updatedAt)}
                   </div>
