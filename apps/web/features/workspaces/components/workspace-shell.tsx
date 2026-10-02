@@ -308,14 +308,14 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
       </header>
 
       <TooltipProvider delay={100}>
-        <div className="mx-auto flex w-full max-w-[1600px] flex-1 min-h-0 flex-col p-3 sm:p-4 lg:p-5">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-1 min-h-0 flex-col p-2 sm:p-3">
           <div className="hidden flex-1 min-h-0 w-full lg:flex">
             <ResizablePanelGroup
               orientation="horizontal"
               id="synapse-workspace-layout"
               defaultLayout={defaultLayout}
               onLayoutChanged={handleLayoutChanged}
-              className="h-full w-full min-h-0 gap-1.5"
+              className="h-full w-full min-h-0 gap-0"
             >
               <ResizablePanel
                 id="sources"
@@ -344,7 +344,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                 />
               </ResizablePanel>
 
-              <ResizableHandle withHandle className="mx-0.5 cursor-col-resize" />
+              <ResizableHandle withHandle className="cursor-col-resize" />
 
               <ResizablePanel
                 id="chat"
@@ -354,7 +354,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                 <ChatPanel workspaceId={workspaceId} />
               </ResizablePanel>
 
-              <ResizableHandle withHandle className="mx-0.5 cursor-col-resize" />
+              <ResizableHandle withHandle className="cursor-col-resize" />
 
               <ResizablePanel
                 id="studio"
@@ -388,7 +388,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
           <Tabs
             value={activeTab}
             onValueChange={setActiveTab}
-            className="flex flex-1 min-h-0 flex-col gap-3 lg:hidden"
+            className="flex flex-1 min-h-0 flex-col gap-2 lg:hidden"
           >
             <TabsList className="grid w-full grid-cols-3 p-1">
               <TabsTrigger value="sources" className="gap-1.5">
