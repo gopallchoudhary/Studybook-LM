@@ -7,7 +7,6 @@ import {
 	Check,
 	ChevronDown,
 	Copy,
-	FileText,
 	Globe,
 	Plus,
 	Sparkles,
@@ -133,7 +132,9 @@ export function ChatThread({
 	const [composer, setComposer] = useState("");
 	const [copiedId, setCopiedId] = useState<string | null>(null);
 	const [savedNoteId, setSavedNoteId] = useState<string | null>(null);
-	const [feedbackState, setFeedbackState] = useState<Record<string, "up" | "down">>({});
+	const [feedbackState, setFeedbackState] = useState<
+		Record<string, "up" | "down">
+	>({});
 	const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const listRef = useRef<HTMLDivElement>(null);
@@ -178,14 +179,7 @@ export function ChatThread({
 		});
 	}, [workspaceId, selectedId, webSearch, getToken]);
 
-	const {
-		messages,
-		sendMessage,
-		status,
-		stop,
-		setMessages,
-		error,
-	} = useChat({
+	const { messages, sendMessage, status, stop, setMessages, error } = useChat({
 		id: selectedId ?? "new-chat",
 		transport,
 		onFinish: async () => {
@@ -352,7 +346,8 @@ export function ChatThread({
 								<div>
 									<h2 className="type-title">Ask your notebook anything</h2>
 									<p className="mt-1 type-caption text-muted-foreground">
-										Answers are grounded directly in your sources. Explore summaries, deep dives, or test your knowledge.
+										Answers are grounded directly in your sources. Explore
+										summaries, deep dives, or test your knowledge.
 									</p>
 								</div>
 								<div className="grid grid-cols-1 gap-2 pt-2 text-left sm:grid-cols-2">
@@ -362,12 +357,18 @@ export function ChatThread({
 											type="button"
 											onClick={() => {
 												setComposer(prompt.text);
-												requestAnimationFrame(() => textareaRef.current?.focus());
+												requestAnimationFrame(() =>
+													textareaRef.current?.focus(),
+												);
 											}}
 											className="flex items-start gap-2.5 rounded-xl border border-border/80 bg-background/80 p-2.5 type-eyebrow transition-all hover:border-foreground/40 hover:bg-muted/50 hover:shadow-xs"
 										>
-											<span className="text-base leading-none">{prompt.icon}</span>
-											<span className="font-medium text-foreground/90">{prompt.label}</span>
+											<span className="text-base leading-none">
+												{prompt.icon}
+											</span>
+											<span className="font-medium text-foreground/90">
+												{prompt.label}
+											</span>
 										</button>
 									))}
 								</div>
@@ -375,12 +376,14 @@ export function ChatThread({
 						</div>
 					) : (
 						<div className="flex flex-col gap-6 pb-4">
-							{(messages as unknown as {
-								id: string;
-								role: string;
-								parts?: { type: string; text?: string }[];
-								content?: string;
-							}[]).map((typed) => {
+							{(
+								messages as unknown as {
+									id: string;
+									role: string;
+									parts?: { type: string; text?: string }[];
+									content?: string;
+								}[]
+							).map((typed) => {
 								const isUser = typed.role === "user";
 								const text =
 									typed.parts
@@ -392,12 +395,11 @@ export function ChatThread({
 
 								if (isUser) {
 									return (
-										<div
-											className="flex w-full justify-end"
-											key={typed.id}
-										>
+										<div className="flex w-full justify-end" key={typed.id}>
 											<div className="max-w-[85%] rounded-2xl rounded-tr-xs border border-border/40 bg-muted/80 px-4 py-3 type-body-sm text-foreground shadow-2xs sm:max-w-[75%] dark:bg-muted/60">
-												<p className="whitespace-pre-wrap break-words">{text}</p>
+												<p className="whitespace-pre-wrap break-words">
+													{text}
+												</p>
 											</div>
 										</div>
 									);
@@ -409,7 +411,10 @@ export function ChatThread({
 								const feedback = feedbackState[typed.id];
 
 								return (
-									<div className="flex w-full flex-col items-start gap-2 pt-1" key={typed.id}>
+									<div
+										className="flex w-full flex-col items-start gap-2 pt-1"
+										key={typed.id}
+									>
 										{thoughts && (
 											<Collapsible className="w-full max-w-full">
 												<CollapsibleTrigger className="group inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-muted/40 px-2.5 py-1 type-eyebrow text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
@@ -433,10 +438,13 @@ export function ChatThread({
 										<div className="flex items-center gap-2 pt-1 text-muted-foreground">
 											<button
 												type="button"
-												onClick={() => handleSaveNote(content || text, typed.id)}
+												onClick={() =>
+													handleSaveNote(content || text, typed.id)
+												}
 												className={cn(
 													"flex items-center gap-1.5 rounded-lg px-2 py-1 type-eyebrow transition-colors hover:bg-muted hover:text-foreground",
-													isSaved && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+													isSaved &&
+														"bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
 												)}
 												aria-label="Save to note"
 											>
@@ -458,7 +466,9 @@ export function ChatThread({
 													render={
 														<button
 															type="button"
-															onClick={() => handleCopy(content || text, typed.id)}
+															onClick={() =>
+																handleCopy(content || text, typed.id)
+															}
 															className="flex size-7 items-center justify-center rounded-lg transition-colors hover:bg-muted hover:text-foreground"
 															aria-label="Copy response"
 														>
@@ -480,7 +490,8 @@ export function ChatThread({
 												onClick={() => toggleFeedback(typed.id, "up")}
 												className={cn(
 													"flex size-7 items-center justify-center rounded-lg transition-colors hover:bg-muted hover:text-foreground",
-													feedback === "up" && "bg-emerald-500/10 text-emerald-500",
+													feedback === "up" &&
+														"bg-emerald-500/10 text-emerald-500",
 												)}
 												aria-label="Good response"
 											>
@@ -492,7 +503,8 @@ export function ChatThread({
 												onClick={() => toggleFeedback(typed.id, "down")}
 												className={cn(
 													"flex size-7 items-center justify-center rounded-lg transition-colors hover:bg-muted hover:text-foreground",
-													feedback === "down" && "bg-destructive/10 text-destructive",
+													feedback === "down" &&
+														"bg-destructive/10 text-destructive",
 												)}
 												aria-label="Poor response"
 											>
@@ -523,12 +535,12 @@ export function ChatThread({
 				</div>
 			</div>
 
-			<div className="shrink-0 pt-2 px-3 sm:px-6 pb-2">
+			<div className="shrink-0 pt-2 px-3 sm:px-6">
 				<div className="mx-auto w-full max-w-3xl">
-					<div className="flex flex-col rounded-2xl border border-input/80 bg-background p-2 transition-all focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/40 focus-within:shadow-sm sm:p-2.5">
+					<div className="flex items-center gap-2 rounded-2xl border border-border bg-background px-3 py-3 shadow-level-1 transition-all focus-within:border-brand/50 focus-within:ring-2 focus-within:ring-ring/40 sm:px-4">
 						<textarea
 							ref={textareaRef}
-							className="max-h-32 min-h-[34px] w-full resize-none bg-transparent px-1 py-0.5 type-body-sm outline-none placeholder:text-muted-foreground/70"
+							className="max-h-32 min-h-[24px] min-w-0 flex-1 resize-none bg-transparent type-body-sm outline-none placeholder:text-muted-foreground/70"
 							placeholder="Ask a question or create something..."
 							rows={1}
 							value={composer}
@@ -539,76 +551,65 @@ export function ChatThread({
 							}}
 							onKeyDown={handleKeyDown}
 						/>
-
-						<div className="flex items-center justify-between pt-1.5">
-							<div className="flex items-center gap-1.5">
-								{readySourcesCount !== undefined && readySourcesCount > 0 && (
-									<span className="flex items-center gap-1.5 rounded-full border border-border/80 bg-muted/60 px-2.5 py-0.5 type-eyebrow text-muted-foreground">
-										<FileText className="size-3 text-muted-foreground/80" />
-										{readySourcesCount} {readySourcesCount === 1 ? "source" : "sources"}
-									</span>
-								)}
-								<label className="flex cursor-pointer items-center gap-1.5 rounded-full border border-border/80 px-2.5 py-0.5 type-eyebrow transition-colors hover:bg-muted/50 has-[input:checked]:border-sky-500/40 has-[input:checked]:bg-sky-500/10 has-[input:checked]:text-sky-600 dark:has-[input:checked]:text-sky-300">
-									<input
-										checked={webSearch}
-										className="sr-only"
-										onChange={(event) => setWebSearch(event.target.checked)}
-										type="checkbox"
-									/>
-									<Globe className="size-3" />
-									Web
-								</label>
-							</div>
-
-							<div>
-								{isStreaming ? (
-									<Tooltip>
-										<TooltipTrigger
-											render={
-												<button
-													type="button"
-													aria-label="Stop generating"
-													onClick={() => stop()}
-													className="flex size-8 items-center justify-center rounded-full bg-foreground text-background shadow-xs transition-all hover:opacity-90 hover:scale-105 active:scale-95 sm:size-8.5"
-												>
-													<Square className="size-3 fill-current" />
-												</button>
-											}
-										/>
-										<TooltipContent side="top">Stop generating</TooltipContent>
-									</Tooltip>
-								) : (
-									<Tooltip>
-										<TooltipTrigger
-											render={
-												<button
-													type="button"
-													aria-label="Send message"
-													disabled={!composer.trim()}
-													onClick={handleSend}
-													className="flex size-8 items-center justify-center rounded-full bg-foreground text-background shadow-xs transition-all hover:opacity-90 hover:scale-105 active:scale-95 disabled:opacity-30 disabled:hover:scale-100 disabled:cursor-not-allowed sm:size-8.5"
-												>
-													<ArrowUp className="size-3.5 stroke-[2.5]" />
-												</button>
-											}
-										/>
-										<TooltipContent side="top">Send message</TooltipContent>
-									</Tooltip>
-								)}
-							</div>
-						</div>
+						{readySourcesCount !== undefined && readySourcesCount > 0 && (
+							<span className="rounded-md border border-border px-3.5 py-1 type-eyebrow text-muted-foreground">
+								{readySourcesCount}{" "}
+								{readySourcesCount === 1 ? "source" : "sources"}
+							</span>
+						)}
+						<label className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-muted/50 has-[input:checked]:border-sky-500/40 has-[input:checked]:bg-sky-500/10 has-[input:checked]:text-sky-600 dark:has-[input:checked]:text-sky-300">
+							<input
+								checked={webSearch}
+								className="sr-only"
+								onChange={(event) => setWebSearch(event.target.checked)}
+								type="checkbox"
+							/>
+							<Globe className="size-4" />
+							<span className="sr-only">Web search</span>
+						</label>
+						{isStreaming ? (
+							<Tooltip>
+								<TooltipTrigger
+									render={
+										<button
+											type="button"
+											aria-label="Stop generating"
+											onClick={() => stop()}
+											className="flex size-8 items-center justify-center rounded-full border border-border text-foreground transition-all hover:bg-muted active:scale-95 sm:size-8.5"
+										>
+											<Square className="size-3.5 fill-current" />
+										</button>
+									}
+								/>
+								<TooltipContent side="top">Stop generating</TooltipContent>
+							</Tooltip>
+						) : (
+							<Tooltip>
+								<TooltipTrigger
+									render={
+										<button
+											type="button"
+											aria-label="Send message"
+											disabled={!composer.trim()}
+											onClick={handleSend}
+											className="flex size-8 items-center justify-center rounded-full border border-border text-foreground transition-all hover:bg-muted active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed sm:size-8.5"
+										>
+											<ArrowUp className="size-4 stroke-[2.5]" />
+										</button>
+									}
+								/>
+								<TooltipContent side="top">Send message</TooltipContent>
+							</Tooltip>
+						)}
 					</div>
 
-					<p className="mt-1.5 text-center type-caption text-muted-foreground/80">
+					<p className="mt-0.5 text-center type-caption text-muted-foreground/80">
 						Grounded in your sources. Web search {webSearch ? "on" : "off"}.
 					</p>
 				</div>
 			</div>
 
-			<AlertDialog
-				open={deleteConfirmOpen}
-				onOpenChange={setDeleteConfirmOpen}
-			>
+			<AlertDialog open={deleteConfirmOpen} onOpenChange={setDeleteConfirmOpen}>
 				<AlertDialogContent>
 					<AlertDialogHeader>
 						<AlertDialogMedia className="bg-destructive/10 text-destructive">
@@ -618,15 +619,14 @@ export function ChatThread({
 						<AlertDialogDescription>
 							Are you sure you want to delete{" "}
 							<span className="font-semibold text-foreground">
-								&ldquo;{selectedConversation?.title ?? "this conversation"}&rdquo;
+								&ldquo;{selectedConversation?.title ?? "this conversation"}
+								&rdquo;
 							</span>
 							? All chat messages in this session will be permanently removed.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>
-						<AlertDialogCancel>
-							Cancel
-						</AlertDialogCancel>
+						<AlertDialogCancel>Cancel</AlertDialogCancel>
 						<AlertDialogAction
 							onClick={() => {
 								if (!selectedId) return;
