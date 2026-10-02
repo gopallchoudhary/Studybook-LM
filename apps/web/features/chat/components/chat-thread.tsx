@@ -541,7 +541,7 @@ export function ChatThread({
 						<textarea
 							ref={textareaRef}
 							className="max-h-32 min-h-[24px] min-w-0 flex-1 resize-none bg-transparent type-body-sm outline-none placeholder:text-muted-foreground/70"
-							placeholder="Ask a question or create something..."
+							placeholder="Ask Anything..."
 							rows={1}
 							value={composer}
 							onChange={(event) => {
@@ -592,7 +592,7 @@ export function ChatThread({
 											aria-label="Send message"
 											disabled={!composer.trim()}
 											onClick={handleSend}
-												className="flex size-8 items-center justify-center rounded-full border border-sky-500/40 bg-sky-500/10 text-sky-600 transition-all hover:bg-sky-500/20 active:scale-95 disabled:border-border disabled:bg-transparent disabled:text-foreground/30 disabled:hover:bg-transparent disabled:cursor-not-allowed dark:text-sky-300 sm:size-8.5"
+											className="flex size-8 items-center justify-center rounded-full border border-sky-500/40 bg-sky-500/10 text-sky-600 transition-all hover:bg-sky-500/20 active:scale-95 disabled:border-border disabled:bg-transparent disabled:text-foreground/30 disabled:hover:bg-transparent disabled:cursor-not-allowed dark:text-sky-300 sm:size-8.5"
 										>
 											<ArrowUp className="size-4 stroke-[2.5]" />
 										</button>
