@@ -198,14 +198,14 @@ function CreateArtifactDialog({
 
 				<form className="grid gap-4" onSubmit={submit}>
 					<div className="grid gap-2">
-						<p className="text-sm font-medium">Type</p>
+						<p className="type-body-sm">Type</p>
 						<div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
 							{artifactTypes.map((item) => {
 								const Icon = item.icon;
 								const selected = type === item.value;
 								return (
 									<button
-										className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring ${
+										className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 type-body-sm transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring ${
 											selected
 												? "border-foreground bg-foreground text-background"
 												: "border-border bg-background hover:bg-muted"
@@ -222,7 +222,7 @@ function CreateArtifactDialog({
 						</div>
 					</div>
 
-					<label className="grid gap-2 text-sm font-medium">
+					<label className="grid gap-2 type-body-sm">
 						Title{" "}
 						<span className="font-normal text-muted-foreground">
 							(optional)
@@ -237,7 +237,7 @@ function CreateArtifactDialog({
 
 					<div className="grid gap-2">
 						<div className="flex items-center justify-between">
-							<p className="text-sm font-medium">Sources</p>
+							<p className="type-body-sm">Sources</p>
 							<Button
 								disabled={readySources.length === 0}
 								onClick={toggleAll}
@@ -261,7 +261,7 @@ function CreateArtifactDialog({
 								))}
 							</div>
 						) : readySources.length === 0 ? (
-							<div className="rounded-xl border border-dashed border-border p-4 text-center text-sm text-muted-foreground">
+							<div className="rounded-xl border border-dashed border-border p-4 text-center type-caption text-muted-foreground">
 								No ready sources yet. Add and process at least one source to
 								create artifacts.
 							</div>
@@ -269,7 +269,7 @@ function CreateArtifactDialog({
 							<div className="max-h-48 space-y-2 overflow-auto pr-1">
 								{readySources.map((source) => (
 									<label
-										className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 text-sm transition-colors ${
+										className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 type-body-sm transition-colors ${
 											selectedIds.includes(source.id)
 												? "border-foreground bg-muted"
 												: "border-border bg-background hover:bg-muted/40"
@@ -286,7 +286,7 @@ function CreateArtifactDialog({
 											<span className="block truncate font-medium">
 												{source.title}
 											</span>
-											<span className="block truncate text-xs text-muted-foreground">
+											<span className="block truncate type-caption text-muted-foreground">
 												{source.type} · {source.id.slice(0, 6)}
 											</span>
 										</span>
@@ -296,14 +296,14 @@ function CreateArtifactDialog({
 						)}
 
 						{selectedIds.length === 0 && readySources.length > 0 && (
-							<p className="text-xs text-destructive">
+							<p className="type-caption text-destructive">
 								Select at least one source.
 							</p>
 						)}
 					</div>
 
 					{createArtifact.error && (
-						<p className="text-sm text-destructive" role="alert">
+						<p className="type-caption text-destructive" role="alert">
 							{createArtifact.error.message}
 						</p>
 					)}
@@ -464,10 +464,10 @@ export function StudioPanel({
 										className="flex max-w-xs flex-col gap-0.5 px-2.5 py-1.5"
 										side="left"
 									>
-										<span className="max-w-[200px] truncate text-xs font-medium">
+										<span className="max-w-[200px] truncate type-eyebrow">
 											{artifact.title}
 										</span>
-										<span className="text-[10px] text-muted-foreground">
+										<span className="type-caption text-muted-foreground">
 											{meta.label} · {status?.label ?? artifact.status}
 										</span>
 									</TooltipContent>
@@ -499,7 +499,7 @@ export function StudioPanel({
 						}
 					/>
 					{artifacts.length > 0 && (
-						<span className="rounded-md bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
+						<span className="rounded-md bg-muted px-1.5 py-0.5 type-eyebrow text-muted-foreground">
 							{artifacts.length}
 						</span>
 					)}
@@ -512,8 +512,8 @@ export function StudioPanel({
 		<div className="flex h-full min-h-0 flex-col">
 			<div className="flex items-center justify-between gap-2 border-b border-border pb-3">
 				<div className="flex items-center gap-2">
-					<span className="text-sm font-semibold">Studio</span>
-					<span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+					<span className="type-title">Studio</span>
+					<span className="rounded-full bg-muted px-2 py-0.5 type-eyebrow text-muted-foreground">
 						{artifacts.length} artifacts
 					</span>
 					{hasPending && (
@@ -563,7 +563,7 @@ export function StudioPanel({
 										<Icon className="size-4" />
 										<Plus className="size-3 text-muted-foreground opacity-70" />
 									</div>
-									<span className="text-xs font-medium leading-tight text-foreground">
+									<span className="type-eyebrow leading-tight text-foreground">
 										{item.label}
 									</span>
 								</button>
@@ -584,13 +584,13 @@ export function StudioPanel({
 						))}
 					</div>
 				) : artifactsQuery.error ? (
-					<div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive">
+					<div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 type-caption text-destructive">
 						Unable to load artifacts: {artifactsQuery.error.message}
 					</div>
 				) : artifacts.length === 0 ? (
 					<div className="grid place-items-center rounded-xl border border-dashed border-border p-8 text-center">
-						<p className="text-sm font-medium">No learning artifacts yet</p>
-						<p className="mt-1 max-w-xs text-xs leading-5 text-muted-foreground">
+						<p className="type-body-sm">No learning artifacts yet</p>
+						<p className="mt-1 max-w-xs type-caption text-muted-foreground">
 							Create a summary, flashcards, quiz, or mind map from your ready
 							sources above.
 						</p>
@@ -628,11 +628,11 @@ export function StudioPanel({
 													<Icon className="size-3.5" />
 												</span>
 												<span className="min-w-0">
-													<span className="block truncate text-sm font-medium">
+													<span className="block truncate type-body-sm">
 														{artifact.title}
 													</span>
 													<span
-														className={`mt-0.5 inline-flex items-center gap-1 text-xs ${
+														className={`mt-0.5 inline-flex items-center gap-1 type-eyebrow ${
 															active
 																? "text-background/70"
 																: "text-muted-foreground"
@@ -687,7 +687,7 @@ export function StudioPanel({
 						{selected && (
 							<div className="rounded-xl border border-border bg-background p-4">
 								<div className="flex items-center justify-between gap-2">
-									<h3 className="truncate text-sm font-semibold">{selected.title}</h3>
+									<h3 className="truncate type-title">{selected.title}</h3>
 									<div className="flex shrink-0 items-center gap-1.5">
 										<Badge
 											variant={statusLabel[selected.status]?.variant ?? "outline"}
@@ -708,12 +708,12 @@ export function StudioPanel({
 
 								{selected.status === "PENDING" ||
 								selected.status === "PROCESSING" ? (
-									<p className="mt-3 text-sm text-muted-foreground">
+									<p className="mt-3 type-body-sm text-muted-foreground">
 										Generating — this updates automatically. Keep Inngest
 										running.
 									</p>
 								) : selected.status === "FAILED" ? (
-									<p className="mt-3 text-sm text-destructive">
+									<p className="mt-3 type-caption text-destructive">
 										{(selected.metadata as { processingError?: string } | null)
 											?.processingError ?? "Generation failed. Try again."}
 									</p>

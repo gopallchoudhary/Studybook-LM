@@ -270,13 +270,13 @@ export function ChatThread({
 		<div className="flex h-full min-h-0 flex-col">
 			<div className="flex shrink-0 items-center justify-between gap-2 border-b border-border pb-3">
 				<div className="flex min-w-0 items-center gap-2">
-					<span className="truncate text-sm font-semibold">
+					<span className="truncate type-title">
 						{selectedConversation?.title ?? "New chat"}
 					</span>
 					{conversations.length > 1 && (
 						<div className="relative">
 							<select
-								className="h-7 max-w-40 truncate rounded-lg border border-input bg-background px-2 pr-6 text-xs outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+								className="h-7 max-w-40 truncate rounded-lg border border-input bg-background px-2 pr-6 type-body-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
 								value={selectedId ?? ""}
 								onChange={(event) => setSelectedId(event.target.value || null)}
 							>
@@ -350,8 +350,8 @@ export function ChatThread({
 									<Sparkles className="size-6 text-foreground" />
 								</div>
 								<div>
-									<h2 className="text-base font-semibold">Ask your notebook anything</h2>
-									<p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+									<h2 className="type-title">Ask your notebook anything</h2>
+									<p className="mt-1 type-caption text-muted-foreground">
 										Answers are grounded directly in your sources. Explore summaries, deep dives, or test your knowledge.
 									</p>
 								</div>
@@ -364,7 +364,7 @@ export function ChatThread({
 												setComposer(prompt.text);
 												requestAnimationFrame(() => textareaRef.current?.focus());
 											}}
-											className="flex items-start gap-2.5 rounded-xl border border-border/80 bg-background/80 p-2.5 text-xs transition-all hover:border-foreground/40 hover:bg-muted/50 hover:shadow-xs"
+											className="flex items-start gap-2.5 rounded-xl border border-border/80 bg-background/80 p-2.5 type-eyebrow transition-all hover:border-foreground/40 hover:bg-muted/50 hover:shadow-xs"
 										>
 											<span className="text-base leading-none">{prompt.icon}</span>
 											<span className="font-medium text-foreground/90">{prompt.label}</span>
@@ -396,7 +396,7 @@ export function ChatThread({
 											className="flex w-full justify-end"
 											key={typed.id}
 										>
-											<div className="max-w-[85%] rounded-2xl rounded-tr-xs border border-border/40 bg-muted/80 px-4 py-3 text-sm leading-relaxed text-foreground shadow-2xs sm:max-w-[75%] dark:bg-muted/60">
+											<div className="max-w-[85%] rounded-2xl rounded-tr-xs border border-border/40 bg-muted/80 px-4 py-3 type-body-sm text-foreground shadow-2xs sm:max-w-[75%] dark:bg-muted/60">
 												<p className="whitespace-pre-wrap break-words">{text}</p>
 											</div>
 										</div>
@@ -412,18 +412,18 @@ export function ChatThread({
 									<div className="flex w-full flex-col items-start gap-2 pt-1" key={typed.id}>
 										{thoughts && (
 											<Collapsible className="w-full max-w-full">
-												<CollapsibleTrigger className="group inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+												<CollapsibleTrigger className="group inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-muted/40 px-2.5 py-1 type-eyebrow text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
 													<span className="size-1.5 rounded-full bg-foreground/60" />
 													<span>Thoughts</span>
 													<ChevronDown className="size-3 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
 												</CollapsibleTrigger>
-												<CollapsibleContent className="mt-2 overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-3 text-xs leading-relaxed text-muted-foreground whitespace-pre-wrap">
+												<CollapsibleContent className="mt-2 overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-3 type-eyebrow text-muted-foreground whitespace-pre-wrap">
 													{thoughts}
 												</CollapsibleContent>
 											</Collapsible>
 										)}
 
-										<div className="w-full max-w-full py-1 text-sm leading-relaxed text-foreground">
+										<div className="w-full max-w-full py-1 type-body-sm text-foreground">
 											<div className="prose prose-sm dark:prose-invert max-w-none break-words leading-relaxed">
 												<Streamdown>{content || text}</Streamdown>
 											</div>
@@ -435,7 +435,7 @@ export function ChatThread({
 												type="button"
 												onClick={() => handleSaveNote(content || text, typed.id)}
 												className={cn(
-													"flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs font-medium transition-colors hover:bg-muted hover:text-foreground",
+													"flex items-center gap-1.5 rounded-lg px-2 py-1 type-eyebrow transition-colors hover:bg-muted hover:text-foreground",
 													isSaved && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
 												)}
 												aria-label="Save to note"
@@ -504,19 +504,19 @@ export function ChatThread({
 							})}
 
 							{isStreaming && (
-								<div className="flex items-center gap-2 pl-1 text-xs text-muted-foreground">
+								<div className="flex items-center gap-2 pl-1 type-eyebrow text-muted-foreground">
 									<Spinner className="size-3.5" />
 									Thinking and generating response...
 								</div>
 							)}
 
-							<div className="my-1 text-center text-[11px] font-normal text-muted-foreground/70">
+							<div className="my-1 text-center type-caption text-muted-foreground/70">
 								Today · {formatTime(new Date())}
 							</div>
 						</div>
 					)}
 					{error && (
-						<div className="mt-3 rounded-xl border border-destructive/30 bg-destructive/5 p-3 text-sm text-destructive">
+						<div className="mt-3 rounded-xl border border-destructive/30 bg-destructive/5 p-3 type-caption text-destructive">
 							{error.message}
 						</div>
 					)}
@@ -528,7 +528,7 @@ export function ChatThread({
 					<div className="flex flex-col rounded-2xl border border-input/80 bg-background p-2 transition-all focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/40 focus-within:shadow-sm sm:p-2.5">
 						<textarea
 							ref={textareaRef}
-							className="max-h-32 min-h-[34px] w-full resize-none bg-transparent px-1 py-0.5 text-sm outline-none placeholder:text-muted-foreground/70"
+							className="max-h-32 min-h-[34px] w-full resize-none bg-transparent px-1 py-0.5 type-body-sm outline-none placeholder:text-muted-foreground/70"
 							placeholder="Ask a question or create something..."
 							rows={1}
 							value={composer}
@@ -543,12 +543,12 @@ export function ChatThread({
 						<div className="flex items-center justify-between pt-1.5">
 							<div className="flex items-center gap-1.5">
 								{readySourcesCount !== undefined && readySourcesCount > 0 && (
-									<span className="flex items-center gap-1.5 rounded-full border border-border/80 bg-muted/60 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+									<span className="flex items-center gap-1.5 rounded-full border border-border/80 bg-muted/60 px-2.5 py-0.5 type-eyebrow text-muted-foreground">
 										<FileText className="size-3 text-muted-foreground/80" />
 										{readySourcesCount} {readySourcesCount === 1 ? "source" : "sources"}
 									</span>
 								)}
-								<label className="flex cursor-pointer items-center gap-1.5 rounded-full border border-border/80 px-2.5 py-0.5 text-[11px] font-medium transition-colors hover:bg-muted/50 has-[input:checked]:border-sky-500/40 has-[input:checked]:bg-sky-500/10 has-[input:checked]:text-sky-600 dark:has-[input:checked]:text-sky-300">
+								<label className="flex cursor-pointer items-center gap-1.5 rounded-full border border-border/80 px-2.5 py-0.5 type-eyebrow transition-colors hover:bg-muted/50 has-[input:checked]:border-sky-500/40 has-[input:checked]:bg-sky-500/10 has-[input:checked]:text-sky-600 dark:has-[input:checked]:text-sky-300">
 									<input
 										checked={webSearch}
 										className="sr-only"
@@ -599,7 +599,7 @@ export function ChatThread({
 						</div>
 					</div>
 
-					<p className="mt-1.5 text-center text-[11px] text-muted-foreground/80">
+					<p className="mt-1.5 text-center type-caption text-muted-foreground/80">
 						Grounded in your sources. Web search {webSearch ? "on" : "off"}.
 					</p>
 				</div>

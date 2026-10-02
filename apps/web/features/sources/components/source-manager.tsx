@@ -267,7 +267,7 @@ function AddSourceDialog({
 					{modeTabs.map((tab) => (
 						<button
 							aria-selected={mode === tab.value}
-							className={`shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring ${
+							className={`shrink-0 rounded-lg px-3 py-1.5 type-body-sm transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring ${
 								mode === tab.value
 									? "bg-background text-foreground shadow-sm"
 									: "text-muted-foreground hover:text-foreground"
@@ -287,7 +287,7 @@ function AddSourceDialog({
 						mode === "markdown" ||
 						mode === "website" ||
 						mode === "youtube") && (
-						<label className="grid gap-2 text-sm font-medium">
+						<label className="grid gap-2 type-body-sm">
 							Title
 							<Input
 								value={title}
@@ -302,7 +302,7 @@ function AddSourceDialog({
 					)}
 
 					{(mode === "text" || mode === "markdown") && (
-						<label className="grid gap-2 text-sm font-medium">
+						<label className="grid gap-2 type-body-sm">
 							Content
 							<Textarea
 								required
@@ -316,7 +316,7 @@ function AddSourceDialog({
 					)}
 
 					{(mode === "website" || mode === "youtube") && (
-						<label className="grid gap-2 text-sm font-medium">
+						<label className="grid gap-2 type-body-sm">
 							URL
 							<Input
 								required
@@ -333,7 +333,7 @@ function AddSourceDialog({
 					)}
 
 					{mode === "pdf" && (
-						<div className="grid gap-2 text-sm font-medium">
+						<div className="grid gap-2 type-body-sm">
 							PDF file
 							<label className="grid cursor-pointer place-items-center gap-2 rounded-xl border border-dashed border-border bg-muted/40 p-8 text-center transition-colors hover:bg-muted">
 								<input
@@ -346,10 +346,10 @@ function AddSourceDialog({
 									}
 								/>
 								<FileText className="size-6 text-muted-foreground" />
-								<span className="text-sm font-medium">
+								<span className="type-body-sm">
 									{pdfFile ? pdfFile.name : "Choose a PDF to upload"}
 								</span>
-								<span className="text-xs text-muted-foreground">
+								<span className="type-caption text-muted-foreground">
 									Up to 10MB
 								</span>
 							</label>
@@ -357,7 +357,7 @@ function AddSourceDialog({
 					)}
 
 					{activeMutation.error && (
-						<p className="text-sm text-destructive" role="alert">
+						<p className="type-caption text-destructive" role="alert">
 							{activeMutation.error.message}
 						</p>
 					)}
@@ -502,10 +502,10 @@ export function SourceManager({
 										}
 									/>
 									<TooltipContent className="flex max-w-xs flex-col gap-0.5 px-2.5 py-1.5" side="right">
-										<span className="max-w-[200px] truncate text-xs font-medium">
+										<span className="max-w-[200px] truncate type-eyebrow">
 											{source.title}
 										</span>
-										<span className="text-[10px] text-muted-foreground">
+										<span className="type-caption text-muted-foreground">
 											{meta.label} · {status.label}
 										</span>
 									</TooltipContent>
@@ -517,7 +517,7 @@ export function SourceManager({
 
 				{sources.length > 0 && (
 					<div className="pt-2 text-center">
-						<span className="rounded-md bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
+						<span className="rounded-md bg-muted px-1.5 py-0.5 type-eyebrow text-muted-foreground">
 							{sources.length}
 						</span>
 					</div>
@@ -530,8 +530,8 @@ export function SourceManager({
 		<div className="flex h-full min-h-0 flex-col">
 			<div className="flex items-center justify-between gap-2 border-b border-border pb-3">
 				<div className="flex items-center gap-2">
-					<span className="text-sm font-semibold">Sources</span>
-					<span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+					<span className="type-title">Sources</span>
+					<span className="rounded-full bg-muted px-2 py-0.5 type-eyebrow text-muted-foreground">
 						{readyCount} ready
 					</span>
 				</div>
@@ -561,7 +561,7 @@ export function SourceManager({
 					trigger={
 						<Button
 							variant="outline"
-							className="w-full rounded-full border-border/80 bg-background text-foreground shadow-xs hover:bg-muted font-medium text-sm gap-2 h-9"
+							className="w-full rounded-full border-border/80 bg-background text-foreground shadow-xs hover:bg-muted type-body-sm gap-2 h-9"
 						>
 							<Plus className="size-4" />
 							Add sources
@@ -575,7 +575,7 @@ export function SourceManager({
 					<span className="sr-only">Search sources</span>
 					<Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
 					<Input
-						className="h-8 pl-8 text-sm"
+						className="h-8 pl-8 type-body-sm"
 						placeholder="Search sources"
 						value={search}
 						onChange={(event) => setSearch(event.target.value)}
@@ -584,7 +584,7 @@ export function SourceManager({
 				<div className="flex gap-1 overflow-x-auto pb-0.5">
 					{statusChips.map((chip) => (
 						<button
-							className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring ${
+							className={`shrink-0 rounded-full border px-2.5 py-1 type-eyebrow transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring ${
 								statusFilter === chip.value
 									? "border-foreground bg-foreground text-background"
 									: "border-border bg-background text-muted-foreground hover:text-foreground"
@@ -607,21 +607,21 @@ export function SourceManager({
 						))}
 					</div>
 				) : sourcesQuery.error ? (
-					<div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive">
+					<div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 type-caption text-destructive">
 						Unable to load sources: {sourcesQuery.error.message}
 					</div>
 				) : hasPending && sources.length === 0 ? (
 					<div className="rounded-xl border border-dashed border-border p-6 text-center">
-						<p className="text-sm font-medium text-muted-foreground">
+						<p className="type-body-sm text-muted-foreground">
 							No sources yet
 						</p>
-						<p className="mt-1 text-xs leading-5 text-muted-foreground/80">
+						<p className="mt-1 type-caption text-muted-foreground/80">
 							Add a PDF, website, video, or note to start building your
 							research base.
 						</p>
 					</div>
 				) : filtered.length === 0 ? (
-					<div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
+					<div className="rounded-xl border border-dashed border-border p-6 text-center type-body-sm text-muted-foreground">
 						{search || statusFilter !== "ALL"
 							? "No sources match your filters."
 							: "No sources yet."}
@@ -651,16 +651,16 @@ export function SourceManager({
 											<Icon className="size-4" />
 										</span>
 										<div className="min-w-0 flex-1">
-											<p className="truncate text-sm font-medium">
+											<p className="truncate type-body-sm">
 												{source.title}
 											</p>
-											<p className="mt-0.5 truncate text-xs text-muted-foreground">
+											<p className="mt-0.5 truncate type-caption text-muted-foreground">
 												{meta.label}
 												{source.url ? ` · ${source.url}` : ""} ·{" "}
 												{formatDate(source.createdAt)}
 											</p>
 											<span
-												className={`mt-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${status.className}`}
+												className={`mt-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 type-eyebrow ${status.className}`}
 											>
 												<span className={`size-1.5 rounded-full ${status.dotClass}`} />
 												{status.label}

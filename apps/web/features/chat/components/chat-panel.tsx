@@ -20,7 +20,7 @@ export function ChatPanel({ workspaceId }: { workspaceId: string }) {
 		return (
 			<div className="flex h-full flex-col">
 				<div className="flex h-10 items-center justify-between border-b border-border pb-3">
-					<span className="text-sm font-semibold">Chat</span>
+					<span className="type-title">Chat</span>
 				</div>
 				<div className="flex flex-1 items-center justify-center">
 					<Spinner className="size-6" />
@@ -33,9 +33,9 @@ export function ChatPanel({ workspaceId }: { workspaceId: string }) {
 		return (
 			<div className="flex h-full flex-col gap-3">
 				<div className="flex items-center justify-between border-b border-border pb-3">
-					<span className="text-sm font-semibold">Chat</span>
+					<span className="type-title">Chat</span>
 				</div>
-				<div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive">
+				<div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 type-caption text-destructive">
 					Unable to load conversations: {conversationsQuery.error.message}
 				</div>
 			</div>

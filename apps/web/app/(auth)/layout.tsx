@@ -10,25 +10,25 @@ export default function AuthLayout({
           <div className="absolute -right-24 -top-24 size-72 rounded-full bg-sky-400/20 blur-3xl" />
           <div className="absolute -bottom-32 -left-20 size-80 rounded-full bg-violet-500/20 blur-3xl" />
 
-          <div className="relative flex items-center gap-3 text-lg font-semibold tracking-tight">
+          <div className="relative flex items-center gap-3 type-title">
             <BrandLogo className="size-9 rounded-xl" size={36} />
             Studybook LM
           </div>
 
           <div className="relative max-w-md">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-sky-300">
+            <p className="mb-5 type-eyebrow uppercase text-sky-300">
               Read deeply. Remember more.
             </p>
-            <h1 className="text-4xl font-semibold tracking-[-0.04em] xl:text-6xl">
+            <h1 className="type-display-1">
               Turn scattered sources into a clear point of view.
             </h1>
-            <p className="mt-6 max-w-sm text-sm leading-7 text-zinc-400">
+            <p className="mt-6 max-w-sm type-body-md text-zinc-400">
               Bring your research together, ask better questions, and build
               learning material that stays grounded in what you provided.
             </p>
           </div>
 
-          <p className="relative text-xs text-zinc-500">Your private learning workspace.</p>
+          <p className="relative type-caption text-zinc-500">Your private learning workspace.</p>
         </section>
 
         <section className="flex min-w-0 items-center justify-center p-5 sm:p-10">
