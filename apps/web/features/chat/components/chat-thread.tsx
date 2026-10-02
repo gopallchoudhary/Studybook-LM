@@ -535,7 +535,7 @@ export function ChatThread({
 				</div>
 			</div>
 
-			<div className="shrink-0 pt-2 px-3 sm:px-6">
+			<div className="shrink-0 px-3 sm:px-6">
 				<div className="mx-auto w-full max-w-3xl">
 					<div className="flex items-center gap-2 rounded-2xl border border-border bg-background px-3 py-3 shadow-level-1 transition-all focus-within:border-brand/50 focus-within:ring-2 focus-within:ring-ring/40 sm:px-4">
 						<textarea
