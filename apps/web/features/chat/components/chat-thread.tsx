@@ -423,8 +423,8 @@ export function ChatThread({
 											</Collapsible>
 										)}
 
-										<div className="w-full max-w-full py-1 type-body-sm text-foreground">
-											<div className="prose prose-sm dark:prose-invert max-w-none break-words leading-relaxed">
+										<div className="w-full max-w-full py-1 text-foreground">
+											<div className="markdown-body">
 												<Streamdown>{content || text}</Streamdown>
 											</div>
 										</div>
