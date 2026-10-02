@@ -1,11 +1,29 @@
 "use client";
 
 import { useUser, UserButton } from "@clerk/nextjs";
-import { ArrowUpRight, BookOpen, Clock3, LibraryBig, Plus, Search } from "lucide-react";
+import { ArrowUpRight, BookOpen, Clock3, LibraryBig, MoreHorizontal, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { useDeferredValue, useState, type FormEvent } from "react";
 import { Button } from "~/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "~/components/ui/alert-dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
 import { BrandLogo } from "~/components/brand-logo";
+import { NotebookIconPicker } from "~/features/workspaces/components/notebook-icon-picker";
 import {
   Dialog,
   DialogContent,
@@ -16,11 +34,15 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Textarea } from "~/components/ui/textarea";
 import {
   useCreateWorkspace,
+  useDeleteWorkspace,
   useWorkspaces,
 } from "~/features/workspaces/hooks/use-workspaces";
+
+type PendingDelete = { id: string; title: string };
 
 type WorkspaceForm = {
   title: string;
@@ -28,27 +50,11 @@ type WorkspaceForm = {
   icon: string;
 };
 
-const iconOptions = [
-  { value: "🧠", label: "Study" },
-  { value: "💻", label: "Coding" },
-  { value: "📗", label: "Research" },
-  { value: "📝", label: "Notes" },
-  { value: "🔬", label: "Science" },
-  { value: "🚀", label: "Projects" },
-  { value: "🎨", label: "Creative" },
-] as const;
-
-const palettes = [
-  "from-sky-500/20 via-cyan-500/10 to-transparent",
-  "from-violet-500/20 via-fuchsia-500/10 to-transparent",
-  "from-amber-500/20 via-orange-500/10 to-transparent",
-];
-
 function emptyWorkspaceForm(): WorkspaceForm {
   return {
     title: "",
     description: "",
-    icon: iconOptions[0].value,
+    icon: "📗",
   };
 }
 
@@ -86,7 +92,7 @@ function CreateWorkspaceDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
         render={
-          <Button size="lg" className="w-full sm:w-auto">
+          <Button size="lg" variant="brand" className="w-full sm:w-auto">
             <Plus data-icon="inline-start" />
             New notebook
           </Button>
@@ -129,30 +135,12 @@ function CreateWorkspaceDialog() {
           </label>
           <div className="grid gap-2 type-body-sm font-medium">
             Icon
-            <div
-              aria-label="Choose a notebook icon"
-              className="flex gap-2 overflow-x-auto pb-1"
-              role="radiogroup"
-            >
-              {iconOptions.map((option) => {
-                const selected = form.icon === option.value;
-                return (
-                  <button
-                    aria-checked={selected}
-                    aria-label={option.label}
-                    className={`grid size-11 shrink-0 place-items-center rounded-xl border text-xl transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring ${selected ? "border-foreground bg-foreground/10 ring-2 ring-foreground/20" : "border-border bg-background hover:bg-muted"}`}
-                    key={option.value}
-                    onClick={() =>
-                      setForm((current) => ({ ...current, icon: option.value }))
-                    }
-                    role="radio"
-                    type="button"
-                  >
-                    {option.value}
-                  </button>
-                );
-              })}
-            </div>
+            <NotebookIconPicker
+              onChange={(icon) =>
+                setForm((current) => ({ ...current, icon }))
+              }
+              value={form.icon}
+            />
           </div>
           {createWorkspace.error && (
             <p className="type-caption text-destructive" role="alert">
@@ -160,7 +148,7 @@ function CreateWorkspaceDialog() {
             </p>
           )}
           <DialogFooter>
-            <Button type="submit" disabled={createWorkspace.isPending}>
+            <Button type="submit" variant="brand" disabled={createWorkspace.isPending}>
               {createWorkspace.isPending ? "Creating..." : "Create notebook"}
             </Button>
           </DialogFooter>
@@ -173,6 +161,8 @@ function CreateWorkspaceDialog() {
 export function WorkspaceDashboard() {
   const { user } = useUser();
   const [search, setSearch] = useState("");
+  const [pendingDelete, setPendingDelete] = useState<PendingDelete | null>(null);
+  const deleteWorkspace = useDeleteWorkspace();
   const deferredSearch = useDeferredValue(search.trim().toLowerCase());
   const workspacesQuery = useWorkspaces();
   const workspaces = workspacesQuery.data ?? [];
@@ -182,6 +172,14 @@ export function WorkspaceDashboard() {
       .toLowerCase()
       .includes(deferredSearch);
   });
+
+  function confirmDelete() {
+    if (!pendingDelete) return;
+    deleteWorkspace.mutate(
+      { workspaceId: pendingDelete.id },
+      { onSuccess: () => setPendingDelete(null) },
+    );
+  }
 
   return (
     <main className="min-h-svh bg-background text-foreground">
@@ -201,7 +199,7 @@ export function WorkspaceDashboard() {
       </header>
 
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        <section className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-6 shadow-sm sm:p-10">
+        <section className="relative overflow-hidden rounded-xl border border-border bg-card p-6 sm:p-10">
           <div className="absolute -right-24 -top-32 size-80 rounded-full bg-sky-400/10 blur-3xl" />
           <div className="relative flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <div className="max-w-2xl">
@@ -243,11 +241,8 @@ export function WorkspaceDashboard() {
 
           {workspacesQuery.isPending ? (
             <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {[0, 1, 2].map((item) => (
-                <div
-                  className="h-52 animate-pulse rounded-2xl bg-muted"
-                  key={item}
-                />
+              {["a", "b", "c", "d", "e", "f"].map((item) => (
+                <Skeleton className="h-52 rounded-xl" key={item} />
               ))}
             </div>
           ) : workspacesQuery.error ? (
@@ -265,40 +260,120 @@ export function WorkspaceDashboard() {
                   ? "Try a different title or description."
                   : "Create a focused space for the sources and questions you want to explore."}
               </p>
-              {!search && <div className="mt-5"><CreateWorkspaceDialog /></div>}
+              {search ? (
+                <div className="mt-5">
+                  <Button onClick={() => setSearch("")} variant="outline">
+                    Clear search
+                  </Button>
+                </div>
+              ) : (
+                <div className="mt-5">
+                  <CreateWorkspaceDialog />
+                </div>
+              )}
             </div>
           ) : (
             <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {filteredWorkspaces.map((workspace, index) => (
-                <Link
-                  className={`group relative min-h-52 overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${palettes[index % palettes.length]} p-6 transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring`}
-                  href={`/workspace/${workspace.id}`}
+              {filteredWorkspaces.map((workspace) => (
+                <div
+                  className="group relative flex min-h-52 flex-col overflow-hidden rounded-xl border border-border bg-card p-6 transition-colors hover:bg-muted/40 focus-within:ring-3 focus-within:ring-ring"
                   key={workspace.id}
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="grid size-11 place-items-center rounded-2xl bg-background/80 text-lg font-semibold shadow-sm">
-                      {workspace.icon || "S"}
-                    </span>
-                    <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <Link
+                    aria-label={`Open ${workspace.title}`}
+                    className="absolute inset-0 z-0 rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring"
+                    href={`/workspace/${workspace.id}`}
+                  />
+                  <div className="pointer-events-none relative z-10 flex min-h-0 flex-1 flex-col">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="grid size-11 place-items-center rounded-xl border border-border bg-background text-lg">
+                        {workspace.icon || <BookOpen className="size-5 text-muted-foreground" />}
+                      </span>
+                      <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </div>
+                    <div className="mt-9">
+                      <h3 className="truncate type-title">
+                        {workspace.title}
+                      </h3>
+                      <p className="mt-2 line-clamp-2 min-h-10 type-caption text-muted-foreground">
+                        {workspace.description || "A new space for your next line of inquiry."}
+                      </p>
+                    </div>
+                    <div className="mt-auto flex items-center gap-2 pt-5 type-caption text-muted-foreground">
+                      <Clock3 className="size-3.5" />
+                      Updated {formatDate(workspace.updatedAt)}
+                    </div>
                   </div>
-                  <div className="mt-9">
-                    <h3 className="truncate type-title">
-                      {workspace.title}
-                    </h3>
-                    <p className="mt-2 line-clamp-2 min-h-10 type-caption text-muted-foreground">
-                      {workspace.description || "A new space for your next line of inquiry."}
-                    </p>
+                  <div className="absolute right-6 top-6 z-20">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger
+                        render={
+                          <Button
+                            aria-label={`Actions for ${workspace.title}`}
+                            onClick={(event) => event.preventDefault()}
+                            size="icon-sm"
+                            variant="ghost"
+                          />
+                        }
+                      >
+                        <MoreHorizontal />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem
+                          render={<Link href={`/workspace/${workspace.id}`} />}
+                        >
+                          Open notebook
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          onClick={() => {
+                            setPendingDelete(workspace);
+                          }}
+                          variant="destructive"
+                        >
+                          Delete notebook
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
-                  <div className="mt-5 flex items-center gap-2 type-caption text-muted-foreground">
-                    <Clock3 className="size-3.5" />
-                    Updated {formatDate(workspace.updatedAt)}
-                  </div>
-                </Link>
+                </div>
               ))}
             </div>
           )}
         </section>
       </div>
+
+      <AlertDialog
+        open={pendingDelete !== null}
+        onOpenChange={(open) => {
+          if (!open) setPendingDelete(null);
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete “{pendingDelete?.title}”?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This cannot be undone. Every source and Studio artifact in this
+              notebook will be permanently removed.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          {deleteWorkspace.error && (
+            <p className="type-caption text-destructive" role="alert">
+              {deleteWorkspace.error.message}
+            </p>
+          )}
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              disabled={deleteWorkspace.isPending}
+              onClick={confirmDelete}
+              variant="destructive"
+            >
+              {deleteWorkspace.isPending ? "Deleting..." : "Delete notebook"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </main>
   );
 }

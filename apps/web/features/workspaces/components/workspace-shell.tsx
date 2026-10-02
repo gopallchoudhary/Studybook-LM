@@ -3,6 +3,7 @@
 import { UserButton } from "@clerk/nextjs";
 import {
   ArrowLeft,
+  BookOpen,
   FileText,
   MessageSquare,
   LayoutPanelTop,
@@ -14,6 +15,16 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { PanelImperativeHandle } from "react-resizable-panels";
 import { Button } from "~/components/ui/button";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "~/components/ui/alert-dialog";
+import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -23,6 +34,9 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
+import { NativeSelect } from "~/components/ui/native-select";
+import { Skeleton } from "~/components/ui/skeleton";
+import { NotebookIconPicker } from "~/features/workspaces/components/notebook-icon-picker";
 import { Textarea } from "~/components/ui/textarea";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/ui/tabs";
 import {
@@ -51,7 +65,7 @@ type SettingsForm = {
   defaultModel: WorkspaceModel;
 };
 
-const LAYOUT_STORAGE_KEY = "synapse:workspace-panel-layout:v1";
+const LAYOUT_STORAGE_KEY = "studybook:workspace-panel-layout:v2";
 
 const panelCard =
   "flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-xs dark:shadow-md dark:ring-1 dark:ring-white/[0.06]";
@@ -62,6 +76,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
   const updateWorkspace = useUpdateWorkspace();
   const deleteWorkspace = useDeleteWorkspace();
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("chat");
   const [selectedSourceId, setSelectedSourceId] = useState<string | null>(null);
   const [selectedArtifactId, setSelectedArtifactId] = useState<string | null>(null);
@@ -126,7 +141,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
   const [form, setForm] = useState<SettingsForm>({
     title: "",
     description: "",
-    icon: "S",
+    icon: "📗",
     defaultModel: "gpt-4o-mini",
   });
 
@@ -135,14 +150,14 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
     setForm({
       title: workspaceQuery.data.title,
       description: workspaceQuery.data.description ?? "",
-      icon: workspaceQuery.data.icon ?? "S",
+      icon: workspaceQuery.data.icon ?? "📗",
       defaultModel:
         workspaceQuery.data.defaultModel === "gpt-4o" ? "gpt-4o" : "gpt-4o-mini",
     });
   }, [workspaceQuery.data]);
 
   if (workspaceQuery.isPending) {
-    return <div className="min-h-svh animate-pulse bg-muted" />;
+    return <Skeleton className="min-h-svh rounded-none" />;
   }
 
   if (workspaceQuery.error || !workspaceQuery.data) {
@@ -180,14 +195,19 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
   }
 
   function removeWorkspace() {
-    if (!window.confirm(`Delete "${workspace.title}"? This cannot be undone.`)) return;
-    deleteWorkspace.mutate({ workspaceId }, {
-      onSuccess: () => router.push("/dashboard"),
-    });
+    deleteWorkspace.mutate(
+      { workspaceId },
+      {
+        onSuccess: () => {
+          setDeleteOpen(false);
+          router.push("/dashboard");
+        },
+      },
+    );
   }
 
   return (
-    <main className="flex h-svh flex-col overflow-hidden bg-background text-foreground">
+    <main className="flex h-dvh flex-col overflow-hidden bg-background text-foreground">
       <header className="sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/80">
         <div className="mx-auto flex min-h-16 w-full max-w-[1600px] items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">
@@ -198,8 +218,8 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
             >
               <ArrowLeft className="size-4" />
             </Link>
-            <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-foreground text-sm font-semibold text-background shadow-sm">
-              {workspace.icon || "S"}
+            <span className="grid size-9 shrink-0 place-items-center rounded-xl border border-border bg-background text-base">
+              {workspace.icon || <BookOpen className="size-4 text-muted-foreground" />}
             </span>
             <div className="min-w-0">
               <p className="type-eyebrow uppercase text-muted-foreground">
@@ -252,20 +272,19 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                     />
                   </label>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <label className="grid gap-2 type-body-sm font-medium">
+                    <div className="grid gap-2 type-body-sm font-medium sm:col-span-2">
                       Icon
-                      <Input
-                        maxLength={8}
-                        value={form.icon}
-                        onChange={(event) =>
-                          setForm((current) => ({ ...current, icon: event.target.value }))
+                      <NotebookIconPicker
+                        onChange={(icon) =>
+                          setForm((current) => ({ ...current, icon }))
                         }
+                        value={form.icon}
                       />
-                    </label>
+                    </div>
                     <label className="grid gap-2 type-body-sm font-medium">
                       Default model
-                      <select
-                        className="h-8 w-full rounded-lg border border-input bg-background px-2.5 type-body-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                      <NativeSelect
+                        className="w-full"
                         value={form.defaultModel}
                         onChange={(event) =>
                           setForm((current) => ({
@@ -276,7 +295,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                       >
                         <option value="gpt-4o-mini">GPT-4o mini</option>
                         <option value="gpt-4o">GPT-4o</option>
-                      </select>
+                      </NativeSelect>
                     </label>
                   </div>
                   {updateWorkspace.error && (
@@ -285,7 +304,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                     </p>
                   )}
                   <DialogFooter>
-                    <Button type="submit" disabled={updateWorkspace.isPending}>
+                    <Button type="submit" variant="brand" disabled={updateWorkspace.isPending}>
                       {updateWorkspace.isPending ? "Saving..." : "Save changes"}
                     </Button>
                   </DialogFooter>
@@ -293,11 +312,13 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
                 <div className="border-t border-border pt-4">
                   <Button
                     className="w-full sm:w-auto"
-                    disabled={deleteWorkspace.isPending}
-                    onClick={removeWorkspace}
+                    onClick={() => {
+                      setSettingsOpen(false);
+                      setDeleteOpen(true);
+                    }}
                     variant="destructive"
                   >
-                    {deleteWorkspace.isPending ? "Deleting..." : "Delete notebook"}
+                    Delete notebook
                   </Button>
                 </div>
               </DialogContent>
@@ -307,12 +328,34 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
         </div>
       </header>
 
+      <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete “{workspace.title}”?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This cannot be undone. Every source and Studio artifact in this
+              notebook will be permanently removed.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              disabled={deleteWorkspace.isPending}
+              onClick={removeWorkspace}
+              variant="destructive"
+            >
+              {deleteWorkspace.isPending ? "Deleting..." : "Delete notebook"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <TooltipProvider delay={100}>
         <div className="mx-auto flex w-full max-w-[1600px] flex-1 min-h-0 flex-col p-2 sm:p-3">
           <div className="hidden flex-1 min-h-0 w-full lg:flex">
             <ResizablePanelGroup
               orientation="horizontal"
-              id="synapse-workspace-layout"
+              id="studybook-workspace-layout"
               defaultLayout={defaultLayout}
               onLayoutChanged={handleLayoutChanged}
               className="h-full w-full min-h-0 gap-0"
