@@ -592,7 +592,7 @@ export function ChatThread({
 											aria-label="Send message"
 											disabled={!composer.trim()}
 											onClick={handleSend}
-											className="flex size-8 items-center justify-center rounded-full border border-border text-foreground transition-all hover:bg-muted active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed sm:size-8.5"
+												className="flex size-8 items-center justify-center rounded-full border border-sky-500/40 bg-sky-500/10 text-sky-600 transition-all hover:bg-sky-500/20 active:scale-95 disabled:border-border disabled:bg-transparent disabled:text-foreground/30 disabled:hover:bg-transparent disabled:cursor-not-allowed dark:text-sky-300 sm:size-8.5"
 										>
 											<ArrowUp className="size-4 stroke-[2.5]" />
 										</button>
