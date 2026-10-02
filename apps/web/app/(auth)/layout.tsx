@@ -4,7 +4,7 @@ export default function AuthLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="min-h-svh bg-background px-4 py-4 text-foreground sm:px-6 sm:py-6">
+    <main className="min-h-svh bg-canvas px-4 py-4 text-foreground sm:px-6 sm:py-6">
       <div className="mx-auto grid min-h-[calc(100svh-2rem)] max-w-6xl overflow-hidden rounded-xl border border-border bg-card shadow-level-2 sm:min-h-[calc(100svh-3rem)] lg:grid-cols-[1.05fr_0.95fr]">
         <section className="relative hidden overflow-hidden bg-zinc-950 p-10 text-white lg:flex lg:flex-col lg:justify-between xl:p-14">
           <div className="absolute -right-24 -top-24 size-72 rounded-full bg-sky-400/20 blur-3xl" />

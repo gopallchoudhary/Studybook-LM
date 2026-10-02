@@ -11,7 +11,7 @@ import { LandingFooter } from "./landing-footer";
 
 export function LandingPageView() {
   return (
-    <div className="min-h-screen bg-[#f6f5f4] text-[#000000] selection:bg-[#0075de]/15 selection:text-[#0075de] dark:bg-[#09090b] dark:text-[#ffffff]">
+    <div className="min-h-screen bg-[#f6f5f4] text-[#000000] selection:bg-brand/15 selection:text-brand dark:bg-[#09090b] dark:text-[#ffffff]">
       <LandingHeader />
       <main>
         <LandingHero />

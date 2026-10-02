@@ -40,8 +40,8 @@ const USE_CASES = [
     description:
       "Index technical RFCs, API references, and architecture blueprints. Trace microservice dependencies and query integration contracts without context-switching.",
     icon: Code2,
-    dotBg: "bg-[#0075de]",
-    badgeBg: "bg-[#62aef0]/15 text-[#0075de]",
+    dotBg: "bg-brand",
+    badgeBg: "bg-[#62aef0]/15 text-brand",
     promptExample: "What are the retry mechanisms and error codes implemented in the payment webhook router?",
   },
   {
@@ -65,7 +65,7 @@ export function UseCasesSection() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           {/* badge-pill */}
-          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-[#0075de] dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
+          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-brand dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
             <span>Built for High-Density Work</span>
           </div>
 
@@ -74,7 +74,7 @@ export function UseCasesSection() {
           </h2>
 
           <p className="type-body-md mt-4 text-[#31302e] dark:text-zinc-300">
-            Whether you're preparing for a bar exam, analyzing earnings calls, or studying for finals, Studybook LM keeps you grounded.
+            Whether you&apos;re preparing for a bar exam, analyzing earnings calls, or studying for finals, Studybook LM keeps you grounded.
           </p>
         </div>
 
@@ -108,7 +108,7 @@ export function UseCasesSection() {
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="type-heading-3 mt-5 text-[#000000] transition-colors group-hover:text-[#0075de] dark:text-white">
+                  <h3 className="type-heading-3 mt-5 text-[#000000] transition-colors group-hover:text-brand dark:text-white">
                     {useCase.title}
                   </h3>
 
@@ -120,11 +120,11 @@ export function UseCasesSection() {
                 {/* Example Prompt Box */}
                 <div className="mt-6 rounded-md border border-[#e6e6e6] bg-[#f6f5f4] p-3 dark:border-zinc-800 dark:bg-zinc-800/60">
                   <div className="type-eyebrow flex items-center gap-1.5 text-[#615d59] dark:text-zinc-400">
-                    <MessageCircle className="size-3 text-[#0075de]" />
+                    <MessageCircle className="size-3 text-brand" />
                     <span>Typical Query</span>
                   </div>
                   <p className="type-body-sm mt-1 italic text-[#31302e] dark:text-zinc-300">
-                    "{useCase.promptExample}"
+                    &quot;{useCase.promptExample}&quot;
                   </p>
                 </div>
               </motion.div>

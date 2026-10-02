@@ -13,7 +13,7 @@ export function PricingSection() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           {/* badge-pill */}
-          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-[#0075de] dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
+          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-brand dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
             <span>Simple Pricing</span>
           </div>
 
@@ -87,7 +87,7 @@ export function PricingSection() {
               {/* button-utility spec: rounded-md (8px), padding 4px 14px */}
               <Link
                 href="/sign-up"
-                className="type-button inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#e6e6e6] bg-[#f6f5f4] py-2.5 text-sm text-[#000000] transition-all hover:bg-white hover:border-[#a39e98] dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
+                className="type-button inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#e6e6e6] bg-[#f6f5f4] py-2.5 text-[#000000] transition-all hover:bg-white hover:border-[#a39e98] dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
               >
                 <span>Get started free</span>
                 <ArrowRight className="size-4" />
@@ -101,11 +101,11 @@ export function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.45, delay: 0.1 }}
-            className="shadow-level-2 relative flex flex-col justify-between rounded-xl border-2 border-[#0075de] bg-white p-6 dark:border-sky-500 dark:bg-zinc-900 sm:p-7"
+            className="shadow-level-2 relative flex flex-col justify-between rounded-xl border-2 border-brand bg-white p-6 dark:border-sky-500 dark:bg-zinc-900 sm:p-7"
           >
             {/* Pill ribbon */}
             <div className="absolute -top-3 right-6">
-              <span className="type-eyebrow inline-flex items-center gap-1 rounded-full bg-[#0075de] px-2.5 py-0.5 font-bold text-white shadow-xs">
+              <span className="type-eyebrow inline-flex items-center gap-1 rounded-full bg-brand px-2.5 py-0.5 font-bold text-white shadow-xs">
                 <Sparkles className="size-3" />
                 Featured
               </span>
@@ -113,7 +113,7 @@ export function PricingSection() {
 
             <div>
               <div className="flex items-center justify-between">
-                <span className="type-eyebrow uppercase tracking-wider text-[#0075de] dark:text-sky-400 font-bold">
+                <span className="type-eyebrow uppercase tracking-wider text-brand dark:text-sky-400 font-bold">
                   Researcher Pro
                 </span>
               </div>
@@ -132,23 +132,23 @@ export function PricingSection() {
               {/* Feature Checklist */}
               <ul className="type-body-sm mt-6 space-y-3 border-t border-[#e6e6e6] pt-6 text-[#31302e] dark:border-zinc-800 dark:text-zinc-300">
                 <li className="flex items-center gap-2.5">
-                  <Check className="size-4 shrink-0 text-[#0075de] dark:text-sky-400" />
+                  <Check className="size-4 shrink-0 text-brand dark:text-sky-400" />
                   <span className="font-semibold text-[#000000] dark:text-white">Unlimited notebooks & source documents</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Check className="size-4 shrink-0 text-[#0075de] dark:text-sky-400" />
+                  <Check className="size-4 shrink-0 text-brand dark:text-sky-400" />
                   <span>Deep Mem0 conversational long-term memory</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Check className="size-4 shrink-0 text-[#0075de] dark:text-sky-400" />
+                  <Check className="size-4 shrink-0 text-brand dark:text-sky-400" />
                   <span>Unlimited Studio artifacts (Quizzes, Mind Maps, Reports)</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Check className="size-4 shrink-0 text-[#0075de] dark:text-sky-400" />
+                  <Check className="size-4 shrink-0 text-brand dark:text-sky-400" />
                   <span>Live Tavily web-search tool calling integration</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Check className="size-4 shrink-0 text-[#0075de] dark:text-sky-400" />
+                  <Check className="size-4 shrink-0 text-brand dark:text-sky-400" />
                   <span>Priority access to OpenRouter flagship models</span>
                 </li>
               </ul>
@@ -158,7 +158,7 @@ export function PricingSection() {
               {/* button-primary pill */}
               <Link
                 href="/sign-up"
-                className="type-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0075de] py-3 text-white transition-all hover:bg-[#005bab] active:scale-[0.9]"
+                className="type-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9]"
               >
                 <Zap className="size-4" />
                 <span>Start 14-day free trial</span>

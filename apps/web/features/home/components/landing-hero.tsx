@@ -18,7 +18,7 @@ export function LandingHero() {
   return (
     <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28">
       {/* Gentle background radial glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 size-[650px] rounded-full bg-gradient-to-br from-[#0075de]/8 via-sky-400/4 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 size-[650px] rounded-full bg-gradient-to-br from-brand/8 via-sky-400/4 to-transparent blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -30,7 +30,7 @@ export function LandingHero() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="type-eyebrow inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-[#0075de] shadow-level-1 dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400"
+            className="type-eyebrow inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-brand shadow-level-1 dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400"
           >
             <Sparkles className="size-3" />
             <span>AI Research & Learning Workspace</span>
@@ -44,7 +44,7 @@ export function LandingHero() {
             className="type-display-1 mt-6 text-[#000000] dark:text-[#ffffff]"
           >
             Turn scattered sources into{" "}
-            <span className="text-[#0075de]">
+            <span className="text-brand">
               grounded understanding.
             </span>
           </motion.h1>
@@ -70,7 +70,7 @@ export function LandingHero() {
             {/* button-primary: background primary (#0075de), on-primary (white), pill rounded.full, type.button */}
             <Link
               href="/sign-up"
-              className="type-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0075de] px-7 py-3 text-white transition-all hover:bg-[#005bab] active:scale-[0.9] sm:w-auto"
+              className="type-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-7 py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9] sm:w-auto"
             >
               <span>Start for free</span>
               <ArrowRight className="size-4" />
@@ -100,7 +100,7 @@ export function LandingHero() {
             </div>
             <span className="hidden text-[#e6e6e6] dark:text-zinc-700 sm:inline">•</span>
             <div className="flex items-center gap-1.5">
-              <Cpu className="size-3.5 text-[#0075de]" />
+              <Cpu className="size-3.5 text-brand" />
               <span>Pinecone Vector RAG</span>
             </div>
             <span className="hidden text-[#e6e6e6] dark:text-zinc-700 sm:inline">•</span>

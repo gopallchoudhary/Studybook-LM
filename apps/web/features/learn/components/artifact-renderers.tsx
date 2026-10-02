@@ -778,7 +778,7 @@ export function ArtifactRenderer({
 	}
 
 	return (
-		<pre className="overflow-auto rounded-xl bg-muted p-4 text-xs">
+		<pre className="overflow-auto rounded-xl bg-muted p-4 font-mono type-caption">
 			{JSON.stringify(content, null, 2)}
 		</pre>
 	);

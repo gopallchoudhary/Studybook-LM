@@ -41,7 +41,7 @@ export function LandingHeader() {
 					className="flex items-center gap-2.5 font-bold tracking-tight text-[#000000] dark:text-white"
 				>
 					<BrandLogo className="size-12 rounded-lg" size={32} />
-					<span className="type-title text-base font-bold tracking-tight">
+					<span className="type-title font-bold tracking-tight">
 						Studybook LM
 					</span>
 				</Link>
@@ -68,7 +68,7 @@ export function LandingHeader() {
 						<div className="flex items-center gap-3">
 							<Link
 								href="/dashboard"
-								className="type-button inline-flex items-center gap-1.5 rounded-full bg-[#0075de] px-4 py-2 text-sm text-white transition-all hover:bg-[#005bab] active:scale-95"
+								className="type-button inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-white transition-all hover:bg-brand-active active:scale-95"
 							>
 								<span>Go to Workspace</span>
 								<ArrowRight className="size-3.5" />
@@ -86,7 +86,7 @@ export function LandingHeader() {
 							{/* button-utility spec: rounded-md (8px), padding 4px 14px, 1px hairline border */}
 							<Link
 								href="/sign-up"
-								className="type-button inline-flex items-center gap-1.5 rounded-md border border-[#e6e6e6] bg-white px-3.5 py-1.5 text-xs text-[#000000] shadow-xs transition-all hover:bg-[#f6f5f4] dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
+								className="type-button inline-flex items-center gap-1.5 rounded-md border border-[#e6e6e6] bg-white px-3.5 py-1.5 text-[#000000] shadow-xs transition-all hover:bg-[#f6f5f4] dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
 							>
 								<span>Get Studybook free</span>
 							</Link>
@@ -133,7 +133,7 @@ export function LandingHeader() {
 							<div className="flex items-center justify-between pt-1">
 								<Link
 									href="/dashboard"
-									className="type-button flex items-center justify-center gap-2 rounded-full bg-[#0075de] px-4 py-2.5 text-sm text-white"
+									className="type-button flex items-center justify-center gap-2 rounded-full bg-brand px-4 py-2.5 text-white"
 								>
 									<span>Go to Workspace</span>
 									<ArrowRight className="size-3.5" />
@@ -150,7 +150,7 @@ export function LandingHeader() {
 								</Link>
 								<Link
 									href="/sign-up"
-									className="type-button flex items-center justify-center gap-2 rounded-full bg-[#0075de] py-2.5 text-sm text-white"
+									className="type-button flex items-center justify-center gap-2 rounded-full bg-brand py-2.5 text-white"
 								>
 									<span>Get Studybook free</span>
 									<ArrowRight className="size-3.5" />

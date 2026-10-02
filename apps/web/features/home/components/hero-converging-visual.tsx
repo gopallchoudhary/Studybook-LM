@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import {
   FileText,
   Globe,
@@ -11,13 +11,11 @@ import {
   Sparkles,
   CheckCircle2,
   Cpu,
-  Layers,
   ArrowRight,
   BookOpen,
   HelpCircle,
   Network,
   MessageSquareCode,
-  RotateCw,
 } from "lucide-react";
 
 interface SourceNode {
@@ -57,7 +55,7 @@ const SOURCES: SourceNode[] = [
     name: "Article.html",
     type: "Web Research",
     icon: Globe,
-    color: "text-[#0075de]",
+    color: "text-brand",
     borderColor: "border-[#62aef0]/60",
     bgLight: "bg-[#62aef0]/12",
     duration: 3.2,
@@ -84,17 +82,6 @@ const SOURCES: SourceNode[] = [
   },
 ];
 
-interface ArtifactCard {
-  id: string;
-  title: string;
-  type: string;
-  icon: React.ElementType;
-  badgeColor: string;
-  textColor: string;
-  description: string;
-  previewElement: React.ReactNode;
-}
-
 export function HeroConvergingVisual() {
   const [activeSourceId, setActiveSourceId] = useState<string | null>(null);
   const [activeArtifactId, setActiveArtifactId] = useState<string | null>(null);
@@ -114,10 +101,10 @@ export function HeroConvergingVisual() {
             </span>
           </div>
 
-          <div className="type-caption flex items-center gap-2 text-xs text-[#615d59] dark:text-zinc-400">
+          <div className="type-caption flex items-center gap-2 text-[#615d59] dark:text-zinc-400">
             <span className="hidden sm:inline">Messy Multi-modal Sources</span>
             <ArrowRight className="size-3 text-[#a39e98]" />
-            <span className="font-semibold text-[#0075de]">Neural Engine</span>
+            <span className="font-semibold text-brand">Neural Engine</span>
             <ArrowRight className="size-3 text-[#a39e98]" />
             <span className="hidden sm:inline font-semibold text-[#1aae39]">Clean Artifacts</span>
           </div>
@@ -157,7 +144,7 @@ export function HeroConvergingVisual() {
                   onMouseLeave={() => setActiveSourceId(null)}
                   className={`group relative flex cursor-pointer items-center gap-2.5 rounded-xl border p-2.5 transition-all duration-200 ${
                     isHighlighted
-                      ? `bg-white shadow-level-1 ring-2 ring-[#0075de]/30 dark:bg-zinc-800 ${source.borderColor}`
+                      ? `bg-white shadow-level-1 ring-2 ring-brand/30 dark:bg-zinc-800 ${source.borderColor}`
                       : "border-[#e6e6e6] bg-[#f6f5f4]/80 hover:border-[#a39e98] hover:bg-white dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:bg-zinc-800"
                   }`}
                 >
@@ -170,13 +157,13 @@ export function HeroConvergingVisual() {
                     <p className="type-body-sm truncate font-semibold text-[#000000] dark:text-zinc-100">
                       {source.name}
                     </p>
-                    <p className="type-caption text-[11px] text-[#615d59] dark:text-zinc-400">
+                    <p className="type-caption text-[#615d59] dark:text-zinc-400">
                       {source.type}
                     </p>
                   </div>
 
                   {/* Flow connector dot on right edge */}
-                  <div className="hidden lg:block absolute -right-1.5 top-1/2 -translate-y-1/2 size-2 rounded-full border border-white bg-[#0075de] dark:border-zinc-900" />
+                  <div className="hidden lg:block absolute -right-1.5 top-1/2 -translate-y-1/2 size-2 rounded-full border border-white bg-brand dark:border-zinc-900" />
                 </motion.div>
               );
             })}
@@ -194,11 +181,11 @@ export function HeroConvergingVisual() {
             >
               <defs>
                 <linearGradient id="stream-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#0075de" stopOpacity="0.8" />
+                  <stop offset="0%" stopColor="var(--brand)" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="#2a9d99" stopOpacity="1" />
                 </linearGradient>
                 <linearGradient id="beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#0075de" stopOpacity="1" />
+                  <stop offset="0%" stopColor="var(--brand)" stopOpacity="1" />
                   <stop offset="100%" stopColor="#1aae39" stopOpacity="0.8" />
                 </linearGradient>
               </defs>
@@ -206,7 +193,7 @@ export function HeroConvergingVisual() {
               {/* Ingress Paths: Left Sources to Center Hub */}
               <motion.path
                 d="M 10 40 C 70 40, 80 190, 115 190"
-                stroke={activeSourceId === "pdf" || engineHovered ? "#0075de" : "#e6e6e6"}
+                stroke={activeSourceId === "pdf" || engineHovered ? "var(--brand)" : "var(--hairline)"}
                 strokeWidth={activeSourceId === "pdf" || engineHovered ? "2.5" : "1.5"}
                 strokeDasharray="4 4"
                 className="transition-colors duration-200 dark:stroke-zinc-700"
@@ -220,7 +207,7 @@ export function HeroConvergingVisual() {
               />
               <motion.path
                 d="M 10 190 C 70 190, 80 190, 115 190"
-                stroke={activeSourceId === "web" || engineHovered ? "#0075de" : "#e6e6e6"}
+                stroke={activeSourceId === "web" || engineHovered ? "var(--brand)" : "var(--hairline)"}
                 strokeWidth={activeSourceId === "web" || engineHovered ? "2.5" : "1.5"}
                 strokeDasharray="4 4"
                 className="transition-colors duration-200 dark:stroke-zinc-700"
@@ -243,7 +230,7 @@ export function HeroConvergingVisual() {
               {/* Egress Paths: Center Hub to Right Artifacts */}
               <motion.path
                 d="M 125 190 C 160 190, 170 50, 230 50"
-                stroke={activeArtifactId === "chat" || engineHovered ? "#0075de" : "#e6e6e6"}
+                stroke={activeArtifactId === "chat" || engineHovered ? "var(--brand)" : "var(--hairline)"}
                 strokeWidth={activeArtifactId === "chat" || engineHovered ? "2.5" : "1.5"}
                 strokeDasharray="4 4"
                 className="transition-colors duration-200 dark:stroke-zinc-700"
@@ -273,7 +260,7 @@ export function HeroConvergingVisual() {
               {/* Animated Light Flow Particle along stream */}
               <motion.circle
                 r="3.5"
-                fill="#0075de"
+                fill="var(--brand)"
                 animate={{
                   cx: [15, 115, 230],
                   cy: [115, 190, 50],
@@ -307,28 +294,28 @@ export function HeroConvergingVisual() {
               whileHover={{ scale: 1.03 }}
               onMouseEnter={() => setEngineHovered(true)}
               onMouseLeave={() => setEngineHovered(false)}
-              className="relative z-10 flex flex-col items-center justify-center rounded-2xl border-2 border-[#0075de]/30 bg-white p-4 shadow-level-2 text-center dark:border-sky-500/40 dark:bg-zinc-900 max-w-[200px]"
+              className="relative z-10 flex flex-col items-center justify-center rounded-2xl border-2 border-brand/30 bg-white p-4 shadow-level-2 text-center dark:border-sky-500/40 dark:bg-zinc-900 max-w-[200px]"
             >
               {/* Animated Pulsing Core Aura */}
-              <div className="relative mb-2 grid size-12 place-items-center rounded-xl bg-gradient-to-br from-[#0075de]/15 via-sky-400/10 to-transparent">
+              <div className="relative mb-2 grid size-12 place-items-center rounded-xl bg-gradient-to-br from-brand/15 via-sky-400/10 to-transparent">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
-                  className="absolute inset-0 rounded-xl border border-dashed border-[#0075de]/40"
+                  className="absolute inset-0 rounded-xl border border-dashed border-brand/40"
                 />
-                <Cpu className="size-6 text-[#0075de] animate-pulse" />
+                <Cpu className="size-6 text-brand animate-pulse" />
               </div>
 
-              <h4 className="type-title text-xs font-bold text-[#000000] dark:text-white">
+              <h4 className="type-title font-bold text-[#000000] dark:text-white">
                 Studybook Engine
               </h4>
-              <p className="type-caption mt-0.5 text-[10px] text-[#615d59] dark:text-zinc-400">
+              <p className="type-caption mt-0.5 text-[#615d59] dark:text-zinc-400">
                 Chunk • Embed • Synthesize
               </p>
 
               {/* Status Chips */}
               <div className="mt-2.5 flex items-center gap-1 rounded-md bg-[#f6f5f4] px-2 py-0.5 text-[9px] font-semibold text-[#31302e] dark:bg-zinc-800 dark:text-zinc-300">
-                <Sparkles className="size-2.5 text-[#0075de]" />
+                <Sparkles className="size-2.5 text-brand" />
                 <span>RAG & Vector Core</span>
               </div>
             </motion.div>
@@ -349,27 +336,27 @@ export function HeroConvergingVisual() {
               onMouseLeave={() => setActiveArtifactId(null)}
               className={`shadow-level-1 relative rounded-xl border p-3 transition-all duration-200 ${
                 activeArtifactId === "chat" || engineHovered
-                  ? "border-[#0075de] bg-white ring-1 ring-[#0075de]/30 dark:bg-zinc-800"
+                  ? "border-brand bg-white ring-1 ring-brand/30 dark:bg-zinc-800"
                   : "border-[#e6e6e6] bg-white hover:border-[#a39e98] dark:border-zinc-800 dark:bg-zinc-900"
               }`}
             >
               <div className="flex items-center justify-between border-b border-[#e6e6e6] pb-2 dark:border-zinc-800">
                 <div className="flex items-center gap-1.5">
-                  <MessageSquareCode className="size-3.5 text-[#0075de]" />
+                  <MessageSquareCode className="size-3.5 text-brand" />
                   <span className="type-eyebrow font-bold text-[#000000] dark:text-white">
                     Grounded Chat
                   </span>
                 </div>
-                <span className="type-caption text-[10px] text-[#1aae39] font-semibold">
+                <span className="type-caption text-[#1aae39] font-semibold">
                   Verified
                 </span>
               </div>
 
               <div className="mt-2 space-y-1.5">
                 <div className="h-1.5 w-4/5 rounded-full bg-[#e6e6e6] dark:bg-zinc-700" />
-                <p className="type-caption text-[11px] leading-tight text-[#31302e] dark:text-zinc-300">
+                <p className="type-caption leading-tight text-[#31302e] dark:text-zinc-300">
                   Cosine similarity bounded across partitioned chunks{" "}
-                  <span className="rounded-xs bg-[#0075de]/15 px-1 py-0.2 font-bold text-[#0075de] text-[10px]">
+                  <span className="rounded-xs bg-brand/15 px-1 py-0.2 font-bold text-brand text-[10px]">
                     [1]
                   </span>{" "}
                   <span className="rounded-xs bg-[#2a9d99]/15 px-1 py-0.2 font-bold text-[#2a9d99] text-[10px]">
@@ -397,7 +384,7 @@ export function HeroConvergingVisual() {
                     Flashcards
                   </span>
                 </div>
-                <span className="type-caption text-[10px] text-[#ff64c8] font-semibold">
+                <span className="type-caption text-[#ff64c8] font-semibold">
                   12 Cards
                 </span>
               </div>
@@ -430,7 +417,7 @@ export function HeroConvergingVisual() {
                     Practice Quiz
                   </span>
                 </div>
-                <span className="type-caption text-[10px] text-[#1aae39] font-bold">
+                <span className="type-caption text-[#1aae39] font-bold">
                   +10 XP
                 </span>
               </div>
@@ -461,7 +448,7 @@ export function HeroConvergingVisual() {
                     Visual Mind Map
                   </span>
                 </div>
-                <span className="type-caption text-[10px] text-[#8b5cf6]">
+                <span className="type-caption text-[#8b5cf6]">
                   Nodes
                 </span>
               </div>
@@ -471,7 +458,7 @@ export function HeroConvergingVisual() {
                   Sources
                 </span>
                 <span className="text-[#a39e98]">➔</span>
-                <span className="rounded-xs bg-[#0075de]/15 px-1.5 py-0.5 font-bold text-[#0075de]">
+                <span className="rounded-xs bg-brand/15 px-1.5 py-0.5 font-bold text-brand">
                   Vector
                 </span>
                 <span className="text-[#a39e98]">➔</span>

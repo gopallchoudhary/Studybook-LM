@@ -21,7 +21,7 @@ export function BeforeAfterSection() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           {/* badge-pill */}
-          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-[#0075de] dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
+          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-brand dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
             <span>Before & After</span>
           </div>
 
@@ -52,7 +52,7 @@ export function BeforeAfterSection() {
                   <XCircle className="size-3.5" />
                   Without Studybook LM
                 </span>
-                <span className="type-caption text-xs text-[#a39e98]">The Tab Nightmare</span>
+                <span className="type-caption text-[#a39e98]">The Tab Nightmare</span>
               </div>
 
               <h3 className="type-heading-3 mt-4 text-[#000000] dark:text-white">
@@ -63,7 +63,7 @@ export function BeforeAfterSection() {
               <div className="relative mt-6 h-56 w-full overflow-hidden rounded-lg border border-[#e6e6e6] bg-[#f6f5f4] p-4 dark:border-zinc-800 dark:bg-zinc-800/40">
                 {/* Angled Stack Card 1 */}
                 <div className="absolute left-6 top-4 w-[85%] -rotate-2 rounded-lg border border-[#e6e6e6] bg-white p-3 shadow-xs dark:border-zinc-700 dark:bg-zinc-800">
-                  <div className="type-caption flex items-center gap-2 text-xs font-semibold text-[#615d59]">
+                  <div className="type-caption flex items-center gap-2 font-semibold text-[#615d59]">
                     <FileText className="size-3.5 text-[#a39e98]" />
                     <span>Quarterly_Report_2025_Final_v2.pdf</span>
                   </div>
@@ -72,7 +72,7 @@ export function BeforeAfterSection() {
 
                 {/* Angled Stack Card 2 */}
                 <div className="absolute left-10 top-14 w-[85%] rotate-1 rounded-lg border border-[#e6e6e6] bg-white p-3 shadow-xs dark:border-zinc-700 dark:bg-zinc-800">
-                  <div className="type-caption flex items-center gap-2 text-xs font-semibold text-[#615d59]">
+                  <div className="type-caption flex items-center gap-2 font-semibold text-[#615d59]">
                     <Globe className="size-3.5 text-[#a39e98]" />
                     <span>34 open Chrome research tabs...</span>
                   </div>
@@ -81,11 +81,11 @@ export function BeforeAfterSection() {
 
                 {/* Angled Stack Card 3 (Top alert) */}
                 <div className="absolute left-8 top-26 w-[88%] -rotate-1 rounded-lg border border-red-200 bg-white p-3.5 shadow-level-1 dark:border-red-900/40 dark:bg-zinc-800">
-                  <div className="type-caption flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400">
+                  <div className="type-caption flex items-center gap-2 font-bold text-red-600 dark:text-red-400">
                     <AlertTriangle className="size-3.5 shrink-0" />
-                    <span>Generic AI hallucination: "Source not found"</span>
+                    <span>Generic AI hallucination: &quot;Source not found&quot;</span>
                   </div>
-                  <p className="type-caption mt-1 text-xs text-[#615d59] dark:text-zinc-400">
+                  <p className="type-caption mt-1 text-[#615d59] dark:text-zinc-400">
                     Flipping back and forth between 5 files trying to verify which claim came from where.
                   </p>
                 </div>
@@ -115,12 +115,12 @@ export function BeforeAfterSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.45, delay: 0.12 }}
-            className="shadow-level-1 flex flex-col justify-between rounded-xl border border-[#0075de]/30 bg-white p-6 dark:border-sky-500/30 dark:bg-zinc-900 sm:p-7"
+            className="shadow-level-1 flex flex-col justify-between rounded-xl border border-brand/30 bg-white p-6 dark:border-sky-500/30 dark:bg-zinc-900 sm:p-7"
           >
             <div>
               {/* Header Pill */}
               <div className="flex items-center justify-between">
-                <span className="type-eyebrow inline-flex items-center gap-1.5 rounded-full bg-[#0075de]/10 px-2.5 py-1 text-[#0075de] dark:bg-sky-950/60 dark:text-sky-300">
+                <span className="type-eyebrow inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-2.5 py-1 text-brand dark:bg-sky-950/60 dark:text-sky-300">
                   <CheckCircle2 className="size-3.5 text-[#1aae39]" />
                   With Studybook LM
                 </span>
@@ -137,7 +137,7 @@ export function BeforeAfterSection() {
               <div className="relative mt-6 rounded-lg border border-[#e6e6e6] bg-[#f6f5f4] p-4 dark:border-zinc-700 dark:bg-zinc-800">
                 <div className="flex items-center justify-between border-b border-[#e6e6e6] pb-2 dark:border-zinc-700">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="size-3.5 text-[#0075de]" />
+                    <Sparkles className="size-3.5 text-brand" />
                     <span className="type-body-sm font-semibold text-[#000000] dark:text-zinc-100">
                       Synthesized Research Answer
                     </span>
@@ -148,15 +148,15 @@ export function BeforeAfterSection() {
                 </div>
 
                 <p className="type-body-sm mt-3 text-[#31302e] dark:text-zinc-300">
-                  "The benchmark shows an 84% speedup in cross-document synthesis{" "}
-                  <span className="rounded-xs bg-[#0075de]/15 px-1 py-0.2 font-bold text-[#0075de]">
+                  &quot;The benchmark shows an 84% speedup in cross-document synthesis{" "}
+                  <span className="rounded-xs bg-brand/15 px-1 py-0.2 font-bold text-brand">
                     [1]
                   </span>{" "}
                   while citation accuracy reaches 99.2% through dense vector re-ranking{" "}
-                  <span className="rounded-xs bg-[#0075de]/15 px-1 py-0.2 font-bold text-[#0075de]">
+                  <span className="rounded-xs bg-brand/15 px-1 py-0.2 font-bold text-brand">
                     [2]
                   </span>
-                  ."
+                  .&quot;
                 </p>
 
                 {/* Studio Artifacts Bar */}

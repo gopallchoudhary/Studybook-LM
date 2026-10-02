@@ -37,8 +37,8 @@ const STEPS = [
     description:
       "Ask questions in natural language. Studybook LM performs dense vector retrieval, re-ranks excerpts, and streams answers where every factual statement has a clickable, verifiable citation.",
     icon: MessageSquareCode,
-    iconBg: "bg-[#0075de]/12",
-    iconColor: "text-[#0075de]",
+    iconBg: "bg-brand/12",
+    iconColor: "text-brand",
     badgeLabel: "Grounded RAG Engine",
     tags: [
       { name: "Streaming RAG", icon: Brain },
@@ -71,7 +71,7 @@ export function HowItWorksSection() {
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           {/* badge-pill */}
-          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-[#0075de] dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
+          <div className="type-eyebrow shadow-level-1 inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] bg-white px-2.5 py-1 text-brand dark:border-zinc-800 dark:bg-zinc-900 dark:text-sky-400">
             <span>Simple 3-Step Workflow</span>
           </div>
 
@@ -131,7 +131,7 @@ export function HowItWorksSection() {
                       return (
                         <span
                           key={tag.name}
-                          className="type-caption inline-flex items-center gap-1 rounded-md bg-[#f6f5f4] px-2 py-1 text-xs text-[#31302e] dark:bg-zinc-800 dark:text-zinc-300"
+                          className="type-caption inline-flex items-center gap-1 rounded-md bg-[#f6f5f4] px-2 py-1 text-[#31302e] dark:bg-zinc-800 dark:text-zinc-300"
                         >
                           <TagIcon className="size-3 text-[#615d59]" />
                           <span>{tag.name}</span>

@@ -162,7 +162,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
 
   if (workspaceQuery.error || !workspaceQuery.data) {
     return (
-      <main className="grid min-h-svh place-items-center bg-background p-6 text-center">
+      <main className="grid min-h-svh place-items-center bg-canvas p-6 text-center">
         <div>
           <h1 className="type-heading-2">Notebook not found</h1>
           <p className="mt-2 type-caption text-muted-foreground">
@@ -207,7 +207,7 @@ export function WorkspaceShell({ workspaceId }: { workspaceId: string }) {
   }
 
   return (
-    <main className="flex h-dvh flex-col overflow-hidden bg-background text-foreground">
+    <main className="flex h-dvh flex-col overflow-hidden bg-canvas text-foreground">
       <header className="sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/80">
         <div className="mx-auto flex min-h-16 w-full max-w-[1600px] items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">

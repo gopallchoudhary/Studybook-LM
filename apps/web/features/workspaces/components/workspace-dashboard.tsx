@@ -182,8 +182,8 @@ export function WorkspaceDashboard() {
   }
 
   return (
-    <main className="min-h-svh bg-background text-foreground">
-      <header className="border-b border-border/70 bg-background/90 backdrop-blur">
+    <main className="min-h-svh bg-canvas text-foreground">
+      <header className="border-b border-border/70 bg-canvas/90 backdrop-blur">
         <div className="mx-auto flex min-h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-3 type-title">
             <BrandLogo className="size-8 rounded-lg" size={32} />
@@ -200,10 +200,10 @@ export function WorkspaceDashboard() {
 
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <section className="relative overflow-hidden rounded-xl border border-border bg-card p-6 sm:p-10">
-          <div className="absolute -right-24 -top-32 size-80 rounded-full bg-sky-400/10 blur-3xl" />
+          <div className="absolute -right-24 -top-32 size-80 rounded-full bg-brand/5 blur-3xl" />
           <div className="relative flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="flex items-center gap-2 type-eyebrow uppercase text-sky-600 dark:text-sky-300">
+              <p className="flex items-center gap-2 type-eyebrow uppercase text-brand">
                 <LibraryBig className="size-4" />
                 Research, remembered
               </p>
@@ -226,6 +226,11 @@ export function WorkspaceDashboard() {
                 Your library
               </p>
               <h2 className="mt-2 type-heading-2">Notebooks</h2>
+              <p aria-live="polite" className="mt-1 type-caption text-muted-foreground">
+                {deferredSearch
+                  ? `${filteredWorkspaces.length} of ${workspaces.length} matching “${deferredSearch}”`
+                  : `${workspaces.length} ${workspaces.length === 1 ? "notebook" : "notebooks"}`}
+              </p>
             </div>
             <label className="relative block w-full sm:max-w-xs">
               <span className="sr-only">Search notebooks</span>
