@@ -1,4 +1,7 @@
 export { LandingPageView } from "./components/landing-page-view";
+export { IllustrationTile, stickerTones } from "./components/illustration-tile";
+export { StickerConstellation } from "./components/sticker-constellation";
+export type { StickerColor } from "./components/illustration-tile";
 export { LandingHeader } from "./components/landing-header";
 export { LandingHero } from "./components/landing-hero";
 export { HeroConvergingVisual } from "./components/hero-converging-visual";

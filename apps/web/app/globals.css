@@ -51,6 +51,21 @@
   --color-brand-active: var(--brand-active);
   --color-brand-foreground: var(--brand-foreground);
   --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-hairline: var(--hairline);
+  --color-night: var(--night);
+  --color-sticker-sky: var(--sticker-sky);
+  --color-sticker-purple: var(--sticker-purple);
+  --color-sticker-purple-deep: var(--sticker-purple-deep);
+  --color-sticker-pink: var(--sticker-pink);
+  --color-sticker-orange: var(--sticker-orange);
+  --color-sticker-teal: var(--sticker-teal);
+  --color-sticker-green: var(--sticker-green);
+  --color-sticker-brown: var(--sticker-brown);
   --font-sans: var(--font-inter, "Inter"), Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-heading: var(--font-sans);
   --font-mono: var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, monospace;
@@ -65,7 +80,23 @@
   --brand-active: #005bab;
   --brand-foreground: #ffffff;
   --canvas: #f6f5f4;
+  --canvas-soft: #f6f5f4;
   --hairline: #e6e6e6;
+
+  /* DESIGN.md ink ramp + the decorative-only sticker palette. */
+  --ink: #000000;
+  --ink-secondary: #31302e;
+  --ink-muted: #615d59;
+  --ink-faint: #a39e98;
+  --night: #213183;
+  --sticker-sky: #62aef0;
+  --sticker-purple: #d6b6f6;
+  --sticker-purple-deep: #391c57;
+  --sticker-pink: #ff64c8;
+  --sticker-orange: #dd5b00;
+  --sticker-teal: #2a9d99;
+  --sticker-green: #1aae39;
+  --sticker-brown: #523410;
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -102,6 +133,12 @@
 
 .dark {
   --canvas: oklch(0.145 0 0);
+  --canvas-soft: oklch(0.18 0 0);
+  --hairline: oklch(1 0 0 / 12%);
+  --ink: oklch(0.985 0 0);
+  --ink-secondary: oklch(0.87 0 0);
+  --ink-muted: oklch(0.7 0 0);
+  --ink-faint: oklch(0.55 0 0);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
