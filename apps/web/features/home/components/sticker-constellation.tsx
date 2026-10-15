@@ -42,7 +42,7 @@ const NODES: ConstellationNode[] = [
 	{
 		icon: FileCode,
 		label: "Notes",
-		tone: "text-sticker-purple",
+		tone: "text-sticker-purple-deep",
 		left: "84%",
 		top: "60%",
 		duration: 6.5,
@@ -64,18 +64,18 @@ export function StickerConstellation({ className }: { className?: string }) {
 		<div
 			aria-hidden="true"
 			className={cn(
-				"pointer-events-none absolute inset-0 overflow-hidden",
+				"pointer-events-none absolute inset-x-0 top-0 h-[620px] overflow-hidden",
 				className,
 			)}
 		>
-			<div className="absolute left-1/2 top-0 size-[680px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-brand/25 blur-[120px]" />
+			<div className="absolute left-1/2 top-0 size-[680px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-brand/10 blur-[120px]" />
 
 			{NODES.map((node, index) => {
 				const Icon = node.icon;
 				return (
 					<motion.div
 						key={node.label}
-						className="absolute hidden items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-2.5 py-2 backdrop-blur-md md:flex"
+						className="absolute hidden items-center gap-2 rounded-xl border border-hairline bg-white px-2.5 py-2 shadow-level-1 dark:bg-zinc-900 md:flex"
 						style={{ left: node.left, top: node.top }}
 						animate={reduce ? undefined : { y: [0, -12, 0] }}
 						transition={
@@ -90,7 +90,7 @@ export function StickerConstellation({ className }: { className?: string }) {
 						}
 					>
 						<Icon className={cn("size-4", node.tone)} />
-						<span className="type-eyebrow text-white/80">{node.label}</span>
+						<span className="type-eyebrow text-ink-secondary">{node.label}</span>
 					</motion.div>
 				);
 			})}
