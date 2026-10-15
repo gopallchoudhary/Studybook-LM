@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import {
-	ArrowRight,
 	FileCheck2,
 	Lock,
 	ShieldCheck,
@@ -72,19 +71,17 @@ export function LandingHero() {
 					>
 						<Link
 							href="/sign-up"
-							className="type-button inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand px-7 py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9] sm:w-auto"
+							className="type-button inline-flex w-full items-center justify-center rounded-md bg-brand px-7 py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9] sm:w-auto"
 						>
 							<span>Start for free</span>
-							<ArrowRight className="size-4" />
 						</Link>
 
 						<a
 							href="#how-it-works"
 							onClick={scrollToHowItWorks}
-							className="type-button shadow-level-1 inline-flex w-full items-center justify-center gap-2 rounded-md border border-hairline bg-white px-6 py-3 text-ink transition-all hover:bg-canvas-soft active:scale-[0.9] dark:bg-zinc-900 dark:hover:bg-zinc-800 sm:w-auto"
+							className="type-button inline-flex w-full items-center justify-center rounded-md bg-brand/10 px-7 py-3 text-brand transition-all hover:bg-brand/15 active:scale-[0.9] sm:w-auto"
 						>
 							<span>See how it works</span>
-							<span className="text-ink-muted">↓</span>
 						</a>
 					</motion.div>
 				</div>
