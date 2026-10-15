@@ -54,6 +54,7 @@ export const stickerTones = STICKER;
 type IllustrationTileProps = {
 	sticker: StickerColor;
 	icon: ElementType;
+	marker?: string;
 	eyebrow?: string;
 	title: string;
 	description?: string;
@@ -64,6 +65,7 @@ type IllustrationTileProps = {
 export function IllustrationTile({
 	sticker,
 	icon: Icon,
+	marker,
 	eyebrow,
 	title,
 	description,
@@ -80,6 +82,12 @@ export function IllustrationTile({
 			)}
 		>
 			<div className={cn("relative grid h-28 place-items-center", tone.band)}>
+				{marker ? (
+					<span className="absolute right-4 top-3 font-mono text-sm font-semibold text-ink-faint">
+						{marker}
+					</span>
+				) : null}
+
 				<span
 					className={cn(
 						"grid size-14 place-items-center rounded-xl bg-white shadow-level-1 dark:bg-zinc-900",
@@ -106,7 +114,9 @@ export function IllustrationTile({
 				) : null}
 
 				{footer ? (
-					<div className="mt-6 border-t border-hairline pt-4">{footer}</div>
+					<div className="mt-auto pt-6">
+						<div className="border-t border-hairline pt-4">{footer}</div>
+					</div>
 				) : null}
 			</div>
 		</div>
