@@ -6,6 +6,7 @@ export { LandingHeader } from "./components/landing-header";
 export { LandingHero } from "./components/landing-hero";
 export { HeroConvergingVisual } from "./components/hero-converging-visual";
 export { HowItWorksSection } from "./components/how-it-works-section";
+export { WorkspaceMockSection } from "./components/workspace-mock-section";
 export { BeforeAfterSection } from "./components/before-after-section";
 export { UseCasesSection } from "./components/use-cases-section";
 export { PricingSection } from "./components/pricing-section";
