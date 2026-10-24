@@ -71,9 +71,9 @@ export function PricingSection() {
 						<div className="mt-8">
 							<Link
 								href="/sign-up"
-								className="type-button inline-flex w-full items-center justify-center gap-2 rounded-md border border-hairline bg-canvas-soft py-2.5 text-ink transition-all hover:bg-white hover:border-ink-faint dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
+								className="focus-ring type-button inline-flex w-full items-center justify-center gap-2 rounded-md border border-hairline bg-canvas-soft py-2.5 text-ink transition-all hover:bg-white hover:border-ink-faint dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
 							>
-								<span>Get started free</span>
+								<span>Start for free</span>
 								<ArrowRight className="size-4" />
 							</Link>
 						</div>
@@ -118,7 +118,7 @@ export function PricingSection() {
 						<div className="mt-8">
 							<Link
 								href="/sign-up"
-								className="type-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9]"
+								className="focus-ring type-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9]"
 							>
 								<Zap className="size-4" />
 								<span>Start 14-day free trial</span>

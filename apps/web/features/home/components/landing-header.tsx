@@ -38,7 +38,7 @@ export function LandingHeader() {
 				{/* Wordmark Logo */}
 				<Link
 					href="/"
-					className="flex items-center gap-2.5 font-bold tracking-tight text-[#000000] dark:text-white"
+					className="focus-ring flex items-center gap-2.5 rounded-md font-bold tracking-tight text-[#000000] dark:text-white"
 				>
 					<BrandLogo className="size-12 rounded-lg" size={32} />
 					<span className="type-title font-bold tracking-tight">
@@ -53,7 +53,7 @@ export function LandingHeader() {
 							key={link.name}
 							href={link.href}
 							onClick={(e) => handleSmoothScroll(e, link.href)}
-							className="type-body-sm text-[#31302e] transition-colors hover:text-[#000000] dark:text-zinc-300 dark:hover:text-white"
+							className="focus-ring type-body-sm rounded-sm text-[#31302e] transition-colors hover:text-[#000000] dark:text-zinc-300 dark:hover:text-white"
 						>
 							{link.name}
 						</a>
@@ -68,7 +68,7 @@ export function LandingHeader() {
 						<div className="flex items-center gap-3">
 							<Link
 								href="/dashboard"
-								className="type-button inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-white transition-all hover:bg-brand-active active:scale-95"
+								className="focus-ring type-button inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-white transition-all hover:bg-brand-active active:scale-95"
 							>
 								<span>Go to Workspace</span>
 								<ArrowRight className="size-3.5" />
@@ -79,16 +79,16 @@ export function LandingHeader() {
 						<div className="flex items-center gap-3">
 							<Link
 								href="/login"
-								className="type-body-sm px-2 font-medium text-[#31302e] transition-colors hover:text-[#000000] dark:text-zinc-300 dark:hover:text-white"
+								className="focus-ring type-body-sm rounded-sm px-2 font-medium text-[#31302e] transition-colors hover:text-[#000000] dark:text-zinc-300 dark:hover:text-white"
 							>
 								Log in
 							</Link>
 							{/* button-utility spec: rounded-md (8px), padding 4px 14px, 1px hairline border */}
 							<Link
 								href="/sign-up"
-								className="type-button inline-flex items-center gap-1.5 rounded-md border border-[#e6e6e6] bg-white px-3.5 py-1.5 text-[#000000] shadow-xs transition-all hover:bg-[#f6f5f4] dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
+								className="focus-ring type-button inline-flex items-center gap-1.5 rounded-md border border-[#e6e6e6] bg-white px-3.5 py-1.5 text-[#000000] shadow-xs transition-all hover:bg-[#f6f5f4] dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
 							>
-								<span>Get Studybook free</span>
+								<span>Start for free</span>
 							</Link>
 						</div>
 					)}
@@ -100,8 +100,10 @@ export function LandingHeader() {
 					<button
 						type="button"
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-						className="rounded-lg p-2 text-[#31302e] hover:bg-[#f6f5f4] dark:text-zinc-400 dark:hover:bg-zinc-800"
-						aria-label="Toggle menu"
+						className="focus-ring rounded-lg p-2 text-[#31302e] hover:bg-[#f6f5f4] dark:text-zinc-400 dark:hover:bg-zinc-800"
+						aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+						aria-expanded={mobileMenuOpen}
+						aria-controls="mobile-nav"
 					>
 						{mobileMenuOpen ? (
 							<X className="size-5" />
@@ -114,14 +116,17 @@ export function LandingHeader() {
 
 			{/* Mobile dropdown */}
 			{mobileMenuOpen && (
-				<div className="border-b border-[#e6e6e6] bg-white px-4 py-5 dark:border-zinc-800 dark:bg-zinc-950 md:hidden">
+				<div
+					id="mobile-nav"
+					className="border-b border-[#e6e6e6] bg-white px-4 py-5 dark:border-zinc-800 dark:bg-zinc-950 md:hidden"
+				>
 					<nav className="flex flex-col gap-2.5">
 						{navLinks.map((link) => (
 							<a
 								key={link.name}
 								href={link.href}
 								onClick={(e) => handleSmoothScroll(e, link.href)}
-								className="type-body-sm rounded-lg px-2.5 py-2 text-[#31302e] hover:bg-[#f6f5f4] dark:text-zinc-300 dark:hover:bg-zinc-800"
+								className="focus-ring type-body-sm rounded-lg px-2.5 py-2 text-[#31302e] hover:bg-[#f6f5f4] dark:text-zinc-300 dark:hover:bg-zinc-800"
 							>
 								{link.name}
 							</a>
@@ -133,7 +138,7 @@ export function LandingHeader() {
 							<div className="flex items-center justify-between pt-1">
 								<Link
 									href="/dashboard"
-									className="type-button flex items-center justify-center gap-2 rounded-full bg-brand px-4 py-2.5 text-white"
+									className="focus-ring type-button flex items-center justify-center gap-2 rounded-full bg-brand px-4 py-2.5 text-white"
 								>
 									<span>Go to Workspace</span>
 									<ArrowRight className="size-3.5" />
@@ -144,15 +149,15 @@ export function LandingHeader() {
 							<>
 								<Link
 									href="/login"
-									className="type-body-sm flex items-center justify-center rounded-md border border-[#e6e6e6] bg-white py-2.5 text-[#000000] dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+									className="focus-ring type-body-sm flex items-center justify-center rounded-md border border-[#e6e6e6] bg-white py-2.5 text-[#000000] dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
 								>
 									Log in
 								</Link>
 								<Link
 									href="/sign-up"
-									className="type-button flex items-center justify-center gap-2 rounded-full bg-brand py-2.5 text-white"
+									className="focus-ring type-button flex items-center justify-center gap-2 rounded-full bg-brand py-2.5 text-white"
 								>
-									<span>Get Studybook free</span>
+									<span>Start for free</span>
 									<ArrowRight className="size-3.5" />
 								</Link>
 							</>

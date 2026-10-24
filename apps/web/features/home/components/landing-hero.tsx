@@ -71,7 +71,7 @@ export function LandingHero() {
 					>
 						<Link
 							href="/sign-up"
-							className="type-button inline-flex w-full items-center justify-center rounded-md bg-brand px-7 py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9] sm:w-auto"
+							className="focus-ring type-button inline-flex w-full items-center justify-center rounded-md bg-brand px-7 py-3 text-white transition-all hover:bg-brand-active active:scale-[0.9] sm:w-auto"
 						>
 							<span>Start for free</span>
 						</Link>
@@ -79,7 +79,7 @@ export function LandingHero() {
 						<a
 							href="#how-it-works"
 							onClick={scrollToHowItWorks}
-							className="type-button inline-flex w-full items-center justify-center rounded-md bg-brand/10 px-7 py-3 text-brand transition-all hover:bg-brand/15 active:scale-[0.9] sm:w-auto"
+							className="focus-ring type-button inline-flex w-full items-center justify-center rounded-md bg-brand/10 px-7 py-3 text-brand transition-all hover:bg-brand/15 active:scale-[0.9] sm:w-auto"
 						>
 							<span>See how it works</span>
 						</a>

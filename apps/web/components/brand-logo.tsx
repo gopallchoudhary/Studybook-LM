@@ -9,7 +9,7 @@ type BrandLogoProps = {
 export function BrandLogo({ className, size = 32 }: BrandLogoProps) {
 	return (
 		<Image
-			src="/brand-logo.svg"
+			src="/brand-logo.png"
 			alt="Studybook LM logo"
 			width={size}
 			height={size}

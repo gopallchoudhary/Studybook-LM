@@ -41,7 +41,7 @@ export function BeforeAfterSection() {
 									<XCircle className="size-3.5" />
 									Without Studybook LM
 								</span>
-								<span className="type-caption text-ink-faint">
+								<span className="type-caption text-ink-muted">
 									The Tab Nightmare
 								</span>
 							</div>
@@ -53,7 +53,7 @@ export function BeforeAfterSection() {
 							<div className="relative mt-6 h-56 w-full overflow-hidden rounded-lg border border-hairline bg-canvas-soft p-4 dark:bg-zinc-800/40">
 								<div className="absolute left-6 top-4 w-[85%] -rotate-2 rounded-lg border border-hairline bg-white p-3 shadow-xs dark:bg-zinc-800">
 									<div className="type-caption flex items-center gap-2 font-semibold text-ink-muted">
-										<FileText className="size-3.5 text-ink-faint" />
+										<FileText className="size-3.5 text-ink-muted" />
 										<span>Quarterly_Report_2025_Final_v2.pdf</span>
 									</div>
 									<div className="mt-2 h-1.5 w-3/4 rounded-full bg-hairline" />
@@ -61,7 +61,7 @@ export function BeforeAfterSection() {
 
 								<div className="absolute left-10 top-14 w-[85%] rotate-1 rounded-lg border border-hairline bg-white p-3 shadow-xs dark:bg-zinc-800">
 									<div className="type-caption flex items-center gap-2 font-semibold text-ink-muted">
-										<Globe className="size-3.5 text-ink-faint" />
+										<Globe className="size-3.5 text-ink-muted" />
 										<span>34 open Chrome research tabs...</span>
 									</div>
 									<div className="mt-2 h-1.5 w-1/2 rounded-full bg-hairline" />
@@ -103,13 +103,10 @@ export function BeforeAfterSection() {
 						className="shadow-level-1 flex flex-col justify-between rounded-xl border border-brand/30 bg-white p-6 dark:border-sticker-sky/30 dark:bg-zinc-900 sm:p-7"
 					>
 						<div>
-							<div className="flex items-center justify-between">
+							<div className="flex items-center">
 								<span className="type-eyebrow inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-2.5 py-1 text-brand dark:bg-brand/15">
 									<CheckCircle2 className="size-3.5 text-sticker-green" />
 									With Studybook LM
-								</span>
-								<span className="type-eyebrow font-bold text-sticker-green">
-									100% Grounded
 								</span>
 							</div>
 
@@ -131,21 +128,19 @@ export function BeforeAfterSection() {
 								</div>
 
 								<p className="type-body-sm mt-3 text-ink-secondary">
-									&quot;The benchmark shows an 84% speedup in cross-document
-									synthesis{" "}
-									<span className="rounded-xs bg-brand/15 px-1 py-0.2 font-bold text-brand">
+									&quot;Both papers converge on the same mechanism{" "}
+									<span className="rounded-xs bg-brand/15 px-1 py-0.5 font-bold text-brand">
 										[1]
-									</span>{" "}
-									while citation accuracy reaches 99.2% through dense vector
-									re-ranking{" "}
-									<span className="rounded-xs bg-brand/15 px-1 py-0.2 font-bold text-brand">
+									</span>
+									, and the follow-up study confirms it on a larger sample{" "}
+									<span className="rounded-xs bg-brand/15 px-1 py-0.5 font-bold text-brand">
 										[2]
 									</span>
 									.&quot;
 								</p>
 
 								<div className="mt-4 flex flex-wrap items-center gap-2 border-t border-hairline pt-3">
-									<span className="type-eyebrow text-ink-faint">
+									<span className="type-eyebrow text-ink-muted">
 										Generated:
 									</span>
 									<span className="type-caption inline-flex items-center gap-1 rounded-md bg-sticker-pink/10 px-2 py-0.5 font-medium text-sticker-pink">

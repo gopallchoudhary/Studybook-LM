@@ -103,9 +103,9 @@ export function HeroConvergingVisual() {
 
           <div className="type-caption flex items-center gap-2 text-[#615d59] dark:text-zinc-400">
             <span className="hidden sm:inline">Messy Multi-modal Sources</span>
-            <ArrowRight className="size-3 text-[#a39e98]" />
+            <ArrowRight className="size-3 text-ink-muted" />
             <span className="font-semibold text-brand">Neural Engine</span>
-            <ArrowRight className="size-3 text-[#a39e98]" />
+            <ArrowRight className="size-3 text-ink-muted" />
             <span className="hidden sm:inline font-semibold text-[#1aae39]">Clean Artifacts</span>
           </div>
         </div>
@@ -116,7 +116,7 @@ export function HeroConvergingVisual() {
           {/* LEFT: 5 Floating Raw Source Badges (3 cols) */}
           <div className="flex flex-row flex-wrap justify-center gap-2.5 lg:col-span-3 lg:flex-col lg:justify-between lg:gap-3">
             <div className="w-full text-center lg:text-left mb-1">
-              <span className="type-eyebrow uppercase tracking-widest text-[#a39e98] dark:text-zinc-500">
+              <span className="type-eyebrow uppercase tracking-widest text-ink-muted dark:text-zinc-500">
                 Raw Input Sources
               </span>
             </div>
@@ -175,6 +175,7 @@ export function HeroConvergingVisual() {
             {/* SVG Connecting Flow Canvas */}
             <svg
               className="absolute inset-0 hidden lg:block h-full w-full overflow-visible pointer-events-none"
+              aria-hidden="true"
               viewBox="0 0 240 380"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -324,7 +325,7 @@ export function HeroConvergingVisual() {
           {/* RIGHT: 4 Clean Output Artifact Cards (5 cols) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:col-span-5">
             <div className="col-span-full mb-0.5">
-              <span className="type-eyebrow uppercase tracking-widest text-[#a39e98] dark:text-zinc-500">
+              <span className="type-eyebrow uppercase tracking-widest text-ink-muted dark:text-zinc-500">
                 Grounded Output Artifacts
               </span>
             </div>
@@ -356,10 +357,10 @@ export function HeroConvergingVisual() {
                 <div className="h-1.5 w-4/5 rounded-full bg-[#e6e6e6] dark:bg-zinc-700" />
                 <p className="type-caption leading-tight text-[#31302e] dark:text-zinc-300">
                   Cosine similarity bounded across partitioned chunks{" "}
-                  <span className="rounded-xs bg-brand/15 px-1 py-0.2 font-bold text-brand text-[10px]">
+                  <span className="rounded-xs bg-brand/15 px-1 py-0.5 font-bold text-brand text-[10px]">
                     [1]
                   </span>{" "}
-                  <span className="rounded-xs bg-[#2a9d99]/15 px-1 py-0.2 font-bold text-[#2a9d99] text-[10px]">
+                  <span className="rounded-xs bg-[#2a9d99]/15 px-1 py-0.5 font-bold text-[#2a9d99] text-[10px]">
                     [2]
                   </span>
                 </p>
@@ -457,11 +458,11 @@ export function HeroConvergingVisual() {
                 <span className="rounded-xs bg-[#f6f5f4] px-1.5 py-0.5 font-medium text-[#31302e] dark:bg-zinc-800 dark:text-zinc-300">
                   Sources
                 </span>
-                <span className="text-[#a39e98]">➔</span>
+                <span className="text-ink-muted">➔</span>
                 <span className="rounded-xs bg-brand/15 px-1.5 py-0.5 font-bold text-brand">
                   Vector
                 </span>
-                <span className="text-[#a39e98]">➔</span>
+                <span className="text-ink-muted">➔</span>
                 <span className="rounded-xs bg-[#8b5cf6]/15 px-1.5 py-0.5 font-bold text-[#8b5cf6]">
                   Insights
                 </span>

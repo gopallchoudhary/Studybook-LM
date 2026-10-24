@@ -10,6 +10,7 @@ import { TRPCProvider } from "~/trpc/client";
 import { createTRPCHttpBatchClientClient } from "~/trpc/create-client";
 
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
+import { MotionConfig } from "motion/react";
 
 function TRPCProviderWithAuth({
     children,
@@ -60,8 +61,10 @@ export const GlobalProviders: React.FC<{ children: React.ReactNode }> = ({ child
                         enableSystem
                         disableTransitionOnChange
                     >
-                        {children}
-                        <Toaster />
+                        <MotionConfig reducedMotion="user">
+                            {children}
+                            <Toaster />
+                        </MotionConfig>
                     </NextThemesProvider>
                 </TRPCProviderWithAuth>
             </QueryClientProvider>

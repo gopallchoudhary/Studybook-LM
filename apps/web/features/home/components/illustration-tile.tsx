@@ -83,7 +83,7 @@ export function IllustrationTile({
 		>
 			<div className={cn("relative grid h-28 place-items-center", tone.band)}>
 				{marker ? (
-					<span className="absolute right-4 top-3 font-mono text-sm font-semibold text-ink-faint">
+					<span className="absolute right-4 top-3 font-mono text-sm font-semibold text-ink-muted">
 						{marker}
 					</span>
 				) : null}

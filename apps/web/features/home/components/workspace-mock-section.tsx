@@ -103,14 +103,14 @@ export function WorkspaceMockSection() {
 								<span className="size-2.5 rounded-full bg-sticker-orange/70" />
 								<span className="size-2.5 rounded-full bg-sticker-green/70" />
 							</div>
-							<span className="type-caption text-ink-faint">
+							<span className="type-caption text-ink-muted">
 								Studybook LM · Neuroscience 201
 							</span>
 						</div>
 
 						<div className="grid lg:grid-cols-[260px_1fr]">
 							<aside className="border-b border-hairline p-4 lg:border-b-0 lg:border-r">
-								<p className="type-eyebrow uppercase tracking-wider text-ink-faint">
+								<p className="type-eyebrow uppercase tracking-wider text-ink-muted">
 									Sources
 								</p>
 								<ul className="mt-3 space-y-2">
@@ -175,7 +175,7 @@ export function WorkspaceMockSection() {
 									</p>
 
 									<div className="mt-5 border-t border-hairline pt-4">
-										<p className="type-eyebrow uppercase tracking-wider text-ink-faint">
+										<p className="type-eyebrow uppercase tracking-wider text-ink-muted">
 											Generated artifacts
 										</p>
 										<div className="mt-2.5 flex flex-wrap gap-2">
